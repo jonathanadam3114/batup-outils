@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { ArrowRight, HelpCircle } from 'lucide-react';
+import { AlertTriangle, ArrowRight, HelpCircle } from 'lucide-react';
 import { APP_BASE } from '@/lib/urls';
 import { Card, CardContent, CardHeader, CardTitle, Input, Label, Button } from './ui';
 
@@ -50,24 +50,27 @@ export function SituationTravauxCalculator() {
     const avancement = Math.max(0, Math.min(100, inputs.avancementPct));
     const travauxRealisesHT = inputs.montantMarcheHT * (avancement / 100);
     const situationBruteHT = Math.max(0, travauxRealisesHT - inputs.dejaFactureHT);
-    const retenueGarantie = inputs.retenueActive ? situationBruteHT * 0.05 : 0;
-    const situationAFacturerHT = situationBruteHT - retenueGarantie;
-    const tva = situationAFacturerHT * (inputs.tvaPct / 100);
-    const situationTTC = situationAFacturerHT + tva;
+    const tvaSituationBrute = situationBruteHT * (inputs.tvaPct / 100);
+    const situationBruteTTC = situationBruteHT + tvaSituationBrute;
+    const retenueGarantie = inputs.retenueActive ? situationBruteTTC * 0.05 : 0;
+    const situationTTC = situationBruteTTC - retenueGarantie;
     const netAPercevoir = situationTTC - inputs.acomptesEncaissesHT;
     const resteAFacturerHT = Math.max(0, inputs.montantMarcheHT - travauxRealisesHT);
     const avancementResiduel = Math.max(0, 100 - avancement);
+    const tropFacture =
+      inputs.dejaFactureHT > 0 && inputs.dejaFactureHT > travauxRealisesHT;
 
     return {
       travauxRealisesHT,
       situationBruteHT,
+      tvaSituationBrute,
+      situationBruteTTC,
       retenueGarantie,
-      situationAFacturerHT,
-      tva,
       situationTTC,
       netAPercevoir,
       resteAFacturerHT,
       avancementResiduel,
+      tropFacture,
     };
   }, [inputs]);
 
@@ -173,7 +176,7 @@ export function SituationTravauxCalculator() {
           <CardContent>
             <ToggleRow
               label="Retenue de garantie 5 % activée ?"
-              hint="Loi 71-584 du 16 juillet 1971 : 5 % du TTC prélevé sur chaque situation, libéré 1 an après réception. Désactiver si caution bancaire en substitution."
+              hint="Loi 71-584 du 16 juillet 1971 : 5 % du montant TTC prélevé sur chaque situation, libéré 1 an après réception. Désactiver si caution bancaire en substitution."
               value={inputs.retenueActive}
               onChange={(v) => updateBool('retenueActive', v)}
             />
@@ -200,6 +203,23 @@ export function SituationTravauxCalculator() {
                 </p>
               </div>
 
+              {results.tropFacture && (
+                <div
+                  className="flex items-start gap-3 rounded-lg border border-amber-300 bg-amber-50 p-3 text-amber-800"
+                  role="alert"
+                  data-testid="warning-trop-facture"
+                >
+                  <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0" />
+                  <div className="text-xs leading-relaxed">
+                    <p className="font-semibold">Risque de trop-perçu</p>
+                    <p className="mt-0.5 opacity-90">
+                      Vous avez déjà facturé plus que les travaux réalisés à date — vérifiez vos
+                      cumuls avant d'émettre cette situation.
+                    </p>
+                  </div>
+                </div>
+              )}
+
               <div className="space-y-2 rounded-lg border border-gray-200 bg-white p-4 text-sm">
                 <Row
                   label="Travaux réalisés HT (cumul)"
@@ -211,25 +231,29 @@ export function SituationTravauxCalculator() {
                   muted
                 />
                 <Row
-                  label="= Cette situation brute HT"
+                  label="= Situation brute HT"
                   value={fmtEuro(results.situationBruteHT)}
+                  bold
+                />
+                <Row
+                  label={`+ TVA ${inputs.tvaPct} %`}
+                  value={fmtEuro(results.tvaSituationBrute)}
+                  muted
+                />
+                <Row
+                  label="= Situation brute TTC"
+                  value={fmtEuro(results.situationBruteTTC)}
                   bold
                 />
                 {inputs.retenueActive && (
                   <Row
-                    label="− Retenue de garantie 5 %"
+                    label="− Retenue de garantie 5 % (sur TTC)"
                     value={fmtEuro(results.retenueGarantie)}
                     muted
                   />
                 )}
                 <Row
-                  label="= Situation HT à facturer"
-                  value={fmtEuro(results.situationAFacturerHT)}
-                  bold
-                />
-                <Row label={`+ TVA ${inputs.tvaPct} %`} value={fmtEuro(results.tva)} muted />
-                <Row
-                  label="= Situation TTC"
+                  label="= Situation TTC à percevoir"
                   value={fmtEuro(results.situationTTC)}
                   bold
                 />

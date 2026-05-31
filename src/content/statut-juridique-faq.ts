@@ -4,7 +4,7 @@ export const statutJuridiqueFAQ: FAQItem[] = [
   {
     question: 'Quel statut juridique choisir pour démarrer une activité BTP en 2026 ?',
     answer:
-      "Si vous démarrez seul, sans associé, avec moins de 36 800 € de CA prévu en prestations pures (ou 91 900 € en achat-revente) et que vous voulez aller vite, la micro-entreprise reste imbattable la première année. Dès que vous prévoyez plus de 80 000 € de CA ou que vous achetez beaucoup de matériaux, basculez en EI au réel ou EURL pour déduire vos charges. Avec un ou plusieurs associés, la SARL ou la SAS deviennent obligatoires. Le comparateur ci-dessus vous donne la réponse adaptée à votre profil.",
+      "Si vous démarrez seul, sans associé, avec moins de 77 700 € de CA prévu en prestations pures (ou 188 700 € en achat-revente) et que vous voulez aller vite, la micro-entreprise reste imbattable la première année. Dès que vous prévoyez plus de 80 000 € de CA ou que vous achetez beaucoup de matériaux, basculez en EI au réel ou EURL pour déduire vos charges. Avec un ou plusieurs associés, la SARL ou la SAS deviennent obligatoires. Le comparateur ci-dessus vous donne la réponse adaptée à votre profil.",
   },
   {
     question: "Quelle est la différence entre EURL et SARL ?",
@@ -24,12 +24,12 @@ export const statutJuridiqueFAQ: FAQItem[] = [
   {
     question: 'À partir de quel CA faut-il quitter la micro-entreprise ?',
     answer:
-      "Plafonds 2026 : 36 800 € HT pour les prestations pures (BIC services artisan), 91 900 € HT pour l'achat-revente de matériaux. Vous restez en micro tant que vous êtes sous ces seuils sur 2 années consécutives. Mais le vrai seuil économique est différent : dès que vos achats matériaux dépassent 30 % du CA, ou dès 60 000 € de CA en prestations BIC, l'EI au réel devient plus rentable car vous déduisez vos charges réelles au lieu de subir l'abattement forfaitaire de 50 %.",
+      "Plafonds 2026 : 77 700 € HT pour les prestations pures (BIC services artisan), 188 700 € HT pour l'achat-revente de matériaux (loi de finances 2023, seuils gelés jusqu'à fin 2026). Vous restez en micro tant que vous êtes sous ces seuils sur 2 années consécutives. Mais le vrai seuil économique est différent : dès que vos achats matériaux dépassent 30 % du CA, ou dès 60 000 € de CA en prestations BIC, l'EI au réel devient plus rentable car vous déduisez vos charges réelles au lieu de subir l'abattement forfaitaire de 50 %.",
   },
   {
     question: 'Quel statut récupère la TVA sur les achats de matériaux ?',
     answer:
-      "Tous les statuts hors micro en franchise. Concrètement : la micro est en franchise jusqu'aux plafonds (36 800 € prestations ou 91 900 € achat-revente), ce qui veut dire qu'elle ne facture pas la TVA mais ne la récupère pas non plus. Au-dessus, ou sur option, vous facturez la TVA et la récupérez sur vos achats. En EI au réel, EURL, SARL, SAS : récupération automatique. Pour un artisan BTP qui achète 30 000 € de matériaux/an, ça représente 6 000 € de TVA récupérée — un argument lourd pour quitter la micro dès que possible.",
+      "Tous les statuts hors micro en franchise. Attention : il faut distinguer le plafond du régime micro (77 700 € prestations / 188 700 € achat-revente en 2026) du seuil de franchise en base de TVA (art. 293 B CGI : 37 500 € prestations / 85 000 € livraisons de biens en 2026). En micro sous franchise TVA, vous ne facturez pas la TVA mais ne la récupérez pas non plus. Au-dessus du seuil de franchise (ou sur option), vous facturez la TVA et la récupérez sur vos achats. En EI au réel, EURL, SARL, SAS : récupération automatique. Pour un artisan BTP qui achète 30 000 € de matériaux/an, ça représente 6 000 € de TVA récupérée — un argument lourd pour quitter la micro dès que possible.",
   },
   {
     question: "Le statut peut-il être changé en cours de route ?",

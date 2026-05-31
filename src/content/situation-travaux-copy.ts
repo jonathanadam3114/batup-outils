@@ -29,12 +29,12 @@ export const situationTravauxCopy = {
         body: "On part du pourcentage d'avancement global du chantier à date (par exemple 30 % à la fin du mois 3 sur un chantier de 10 mois). On multiplie par le montant total HT du marché pour obtenir le cumul des travaux réalisés HT. On soustrait ensuite ce qui a déjà été facturé dans les situations précédentes : la différence constitue la situation en cours. Cette logique cumulative protège des erreurs de double facturation.",
       },
       {
-        heading: '2. La retenue de garantie de 5 % est prélevée à chaque situation',
-        body: "La Loi n° 71-584 du 16 juillet 1971 autorise le maître d'ouvrage à retenir 5 % du montant TTC sur chaque acompte ou situation. Concrètement, la retenue se déduit du montant brut de la situation avant TVA, et reste consignée jusqu'à 1 an après la réception. Sur un marché de 100 000 € HT, c'est 5 000 € qui seront immobilisés au total, répartis sur chaque situation. La caution bancaire en substitution permet d'éviter cette retenue (voir notre calculateur dédié).",
+        heading: '2. La retenue de garantie de 5 % se prélève sur le montant TTC',
+        body: "La Loi n° 71-584 du 16 juillet 1971 autorise le maître d'ouvrage à retenir 5 % du montant TTC de chaque acompte ou situation, et à consigner cette somme jusqu'à 1 an après la réception. Concrètement, on calcule d'abord le HT de la situation, on ajoute la TVA pour obtenir le TTC, puis on déduit 5 % de ce TTC : la retenue s'applique donc sur l'assiette TTC, pas sur le HT. Sur un marché de 100 000 € HT, environ 6 000 € seront immobilisés au total (5 % du TTC global), répartis sur chaque situation. La caution bancaire en substitution permet d'éviter cette retenue (voir notre calculateur dédié).",
       },
       {
-        heading: '3. La TVA suit le taux du marché et non celui de la facture initiale',
-        body: "Le taux de TVA applicable à chaque situation est celui du marché global : 20 % en construction neuve, 10 % en rénovation logement de plus de 2 ans, 5,5 % pour les travaux d'amélioration énergétique éligibles. Vous ne pouvez pas changer de taux de TVA en cours de marché, sauf modification réglementaire ou nouvelle attestation client. La TVA s'applique sur le montant HT après déduction de la retenue de garantie.",
+        heading: '3. La TVA suit le taux du marché et se calcule sur le HT avant retenue',
+        body: "Le taux de TVA applicable à chaque situation est celui du marché global : 20 % en construction neuve, 10 % en rénovation logement de plus de 2 ans, 5,5 % pour les travaux d'amélioration énergétique éligibles. Vous ne pouvez pas changer de taux de TVA en cours de marché, sauf modification réglementaire ou nouvelle attestation client. La TVA se calcule sur la situation brute HT, puis la retenue de garantie de 5 % s'applique sur le TTC obtenu — ordre conforme à la Loi 71-584.",
       },
       {
         heading: "4. Les acomptes déjà encaissés viennent en déduction du net à percevoir",

@@ -17,17 +17,30 @@ const DEFAULTS: Inputs = {
   contrat: 'ouvrier',
 };
 
-// Barème indicatif 2026 — CCN ouvriers du bâtiment (moyenne nationale)
-// Les accords régionaux peuvent fixer des taux légèrement différents.
-const PALIERS: { seuil: number; taux: number }[] = [
-  { seuil: 30, taux: 0.15 },
-  { seuil: 25, taux: 0.12 },
-  { seuil: 20, taux: 0.10 },
-  { seuil: 15, taux: 0.08 },
-  { seuil: 10, taux: 0.06 },
-  { seuil: 5, taux: 0.04 },
-  { seuil: 3, taux: 0.02 },
+// Barème canonique — CCN ouvriers du bâtiment (article 6.2, accord 8 oct. 1990
+// et accords régionaux types). Paliers de 3 ans, taux croissant de 3 % à 15 %.
+const PALIERS_OUVRIER: { seuil: number; taux: number }[] = [
+  { seuil: 15, taux: 0.15 },
+  { seuil: 12, taux: 0.12 },
+  { seuil: 9, taux: 0.09 },
+  { seuil: 6, taux: 0.06 },
+  { seuil: 3, taux: 0.03 },
 ];
+
+// Barème CCN ETAM bâtiment (article 14) — paliers de 3 ans, plafond à 5 %.
+const PALIERS_ETAM: { seuil: number; taux: number }[] = [
+  { seuil: 15, taux: 0.05 },
+  { seuil: 12, taux: 0.04 },
+  { seuil: 9, taux: 0.03 },
+  { seuil: 6, taux: 0.02 },
+  { seuil: 3, taux: 0.01 },
+];
+
+function getPaliers(contrat: Contrat): { seuil: number; taux: number }[] {
+  if (contrat === 'ouvrier') return PALIERS_OUVRIER;
+  if (contrat === 'etam') return PALIERS_ETAM;
+  return [];
+}
 
 const CHARGES_PATRONALES_BTP = 0.42;
 
@@ -40,16 +53,19 @@ function fmtEuro(n: number, decimals = 0): string {
   return `${fmt.format(decimals > 0 ? n : Math.round(n))} €`;
 }
 
-function getTaux(annees: number): number {
-  for (const p of PALIERS) {
+function getTaux(annees: number, paliers: { seuil: number; taux: number }[]): number {
+  for (const p of paliers) {
     if (annees >= p.seuil) return p.taux;
   }
   return 0;
 }
 
-function nextPalier(annees: number): { seuil: number; taux: number } | null {
+function nextPalier(
+  annees: number,
+  paliers: { seuil: number; taux: number }[],
+): { seuil: number; taux: number } | null {
   // Find the next higher palier strictly above the current one.
-  const sorted = [...PALIERS].sort((a, b) => a.seuil - b.seuil);
+  const sorted = [...paliers].sort((a, b) => a.seuil - b.seuil);
   for (const p of sorted) {
     if (annees < p.seuil) return p;
   }
@@ -69,16 +85,17 @@ export function PrimeAncienneteCalculator() {
   };
 
   const results = useMemo(() => {
-    const applicable = inputs.contrat === 'ouvrier';
+    const applicable = inputs.contrat === 'ouvrier' || inputs.contrat === 'etam';
+    const paliers = getPaliers(inputs.contrat);
     const annees = Math.max(0, Math.floor(inputs.anciennete));
     const brut = Math.max(0, inputs.salaireBrut);
 
-    const taux = applicable ? getTaux(annees) : 0;
+    const taux = applicable ? getTaux(annees, paliers) : 0;
     const primeMensuelle = brut * taux;
     const primeAnnuelle = primeMensuelle * 12;
     const coutEmployeur = primeAnnuelle * (1 + CHARGES_PATRONALES_BTP);
 
-    const prochain = applicable ? nextPalier(annees) : null;
+    const prochain = applicable ? nextPalier(annees, paliers) : null;
     const primeProchainPalier = prochain ? brut * prochain.taux : 0;
 
     return {
@@ -129,7 +146,7 @@ export function PrimeAncienneteCalculator() {
               <Label className="flex items-center gap-1">
                 Type de contrat
                 <span
-                  title="La prime d'ancienneté barémée par paliers concerne uniquement les ouvriers du bâtiment. Les ETAM et cadres relèvent d'autres conventions."
+                  title="Ouvriers : CCN art. 6.2, barème 3/6/9/12/15 %. ETAM : CCN art. 14, barème 1/2/3/4/5 %. Cadres : pas de prime conventionnelle barémée."
                   className="cursor-help text-gray-400"
                 >
                   <HelpCircle className="h-4 w-4" />
@@ -149,50 +166,74 @@ export function PrimeAncienneteCalculator() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Barème indicatif 2026</CardTitle>
+            <CardTitle>
+              {inputs.contrat === 'ouvrier' && 'Barème ouvriers du bâtiment (CCN, art. 6.2)'}
+              {inputs.contrat === 'etam' && 'Barème ETAM bâtiment (CCN, art. 14)'}
+              {inputs.contrat === 'cadre' && 'Cadres bâtiment — pas de barème conventionnel'}
+            </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="overflow-hidden rounded-md border border-gray-200">
-              <table className="w-full text-sm">
-                <thead className="bg-gray-50 text-xs uppercase tracking-wide text-gray-500">
-                  <tr>
-                    <th className="px-3 py-2 text-left font-medium">Ancienneté</th>
-                    <th className="px-3 py-2 text-right font-medium">Taux</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { lib: 'Moins de 3 ans', t: 0 },
-                    { lib: 'À partir de 3 ans', t: 0.02 },
-                    { lib: 'À partir de 5 ans', t: 0.04 },
-                    { lib: 'À partir de 10 ans', t: 0.06 },
-                    { lib: 'À partir de 15 ans', t: 0.08 },
-                    { lib: 'À partir de 20 ans', t: 0.10 },
-                    { lib: 'À partir de 25 ans', t: 0.12 },
-                    { lib: '30 ans et plus (plafond)', t: 0.15 },
-                  ].map((row) => {
-                    const active =
-                      results.applicable &&
-                      Math.abs(row.t - results.taux) < 0.0001 &&
-                      row.t > 0;
-                    return (
-                      <tr
-                        key={row.lib}
-                        className={`border-t border-gray-100 ${
-                          active ? 'bg-brand-50/60 font-semibold text-brand-700' : 'text-gray-700'
-                        }`}
-                      >
-                        <td className="px-3 py-2">{row.lib}</td>
-                        <td className="px-3 py-2 text-right">{(row.t * 100).toFixed(0)} %</td>
+            {inputs.contrat === 'cadre' ? (
+              <p className="text-sm text-gray-600">
+                La convention collective nationale des cadres du bâtiment ne prévoit pas de
+                prime d'ancienneté barémée. L'ancienneté joue sur la classification (position
+                1 à 4) et sur les augmentations individuelles négociées.
+              </p>
+            ) : (
+              <>
+                <div className="overflow-hidden rounded-md border border-gray-200">
+                  <table className="w-full text-sm">
+                    <thead className="bg-gray-50 text-xs uppercase tracking-wide text-gray-500">
+                      <tr>
+                        <th className="px-3 py-2 text-left font-medium">Ancienneté</th>
+                        <th className="px-3 py-2 text-right font-medium">Taux</th>
                       </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-            <p className="mt-3 text-xs text-gray-500">
-              Barème indicatif 2026 — les accords régionaux peuvent fixer des taux différents.
-            </p>
+                    </thead>
+                    <tbody>
+                      {(inputs.contrat === 'ouvrier'
+                        ? [
+                            { lib: 'Moins de 3 ans', t: 0 },
+                            { lib: '3 à 5 ans', t: 0.03 },
+                            { lib: '6 à 8 ans', t: 0.06 },
+                            { lib: '9 à 11 ans', t: 0.09 },
+                            { lib: '12 à 14 ans', t: 0.12 },
+                            { lib: '15 ans et plus (plafond)', t: 0.15 },
+                          ]
+                        : [
+                            { lib: 'Moins de 3 ans', t: 0 },
+                            { lib: '3 à 5 ans', t: 0.01 },
+                            { lib: '6 à 8 ans', t: 0.02 },
+                            { lib: '9 à 11 ans', t: 0.03 },
+                            { lib: '12 à 14 ans', t: 0.04 },
+                            { lib: '15 ans et plus (plafond)', t: 0.05 },
+                          ]
+                      ).map((row) => {
+                        const active =
+                          results.applicable &&
+                          Math.abs(row.t - results.taux) < 0.0001 &&
+                          row.t > 0;
+                        return (
+                          <tr
+                            key={row.lib}
+                            className={`border-t border-gray-100 ${
+                              active ? 'bg-brand-50/60 font-semibold text-brand-700' : 'text-gray-700'
+                            }`}
+                          >
+                            <td className="px-3 py-2">{row.lib}</td>
+                            <td className="px-3 py-2 text-right">{(row.t * 100).toFixed(0)} %</td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+                <p className="mt-3 text-xs text-gray-500">
+                  Barème canonique CCN — les accords régionaux peuvent fixer des taux légèrement
+                  différents. L'assiette légale est le salaire minimum conventionnel de la
+                  classification (Niveau-Position) ; l'outil simplifie en utilisant le brut réel.
+                </p>
+              </>
+            )}
           </CardContent>
         </Card>
       </div>
@@ -212,7 +253,7 @@ export function PrimeAncienneteCalculator() {
                 >
                   <Info className="mt-0.5 h-4 w-4 flex-shrink-0" />
                   <p>
-                    <span className="font-semibold">Non applicable.</span> Le barème d'ancienneté par paliers vise les ouvriers du bâtiment. Les ETAM et cadres relèvent d'autres conventions, avec des règles propres (grille de classification, augmentation individuelle).
+                    <span className="font-semibold">Non applicable / barème individuel négocié.</span> La CCN cadres du bâtiment ne prévoit pas de prime d'ancienneté barémée. L'ancienneté joue sur la classification (position 1 à 4) et sur les augmentations individuelles.
                   </p>
                 </div>
               ) : (
@@ -255,6 +296,17 @@ export function PrimeAncienneteCalculator() {
                       .
                     </div>
                   )}
+
+                  <div className="flex items-start gap-2 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-800">
+                    <Info className="mt-0.5 h-4 w-4 flex-shrink-0" />
+                    <p>
+                      <span className="font-semibold">Assiette légale :</span> la prime se calcule
+                      sur le salaire minimum conventionnel de la classification (Niveau-Position),
+                      pas sur le brut réel. Si votre salarié est payé au-dessus du minimum, la
+                      prime se calcule sur le minimum (le reste est rémunération libre). L'outil
+                      simplifie en utilisant le brut saisi.
+                    </p>
+                  </div>
 
                   <div className="space-y-2 pt-2">
                     <a href={ctaSignupHref} data-testid="cta-signup">

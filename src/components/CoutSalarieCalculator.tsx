@@ -41,7 +41,7 @@ const SURCOUT_CONVENTION: Record<Convention, number> = {
 };
 
 const TAUX_SALARIAL = 0.23;
-const HEURES_MENSUELLES = 152;
+const HEURES_MENSUELLES = 151.67;
 
 const NUMBER_FMT = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 });
 const RATE_FMT = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 2 });

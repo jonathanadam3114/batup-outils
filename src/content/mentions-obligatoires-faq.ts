@@ -14,7 +14,7 @@ export const mentionsObligatoiresFAQ: FAQItem[] = [
   {
     question: 'Quelle amende si une mention est manquante sur ma facture ?',
     answer:
-      "Les sanctions varient selon la mention omise. Une mention de facturation de droit commun manquante (date, identification, conditions de paiement) est sanctionnée par une amende administrative de 75 000 € (personne physique) à 2 000 000 € (personne morale) — Code commerce L 441-9. Une mention TVA erronée ou omise expose à 5 % du montant facturé (CGI art. 1737). L'absence de la mention médiateur de la consommation coûte jusqu'à 15 000 € (personne morale). Et l'absence d'assurance décennale mentionnée peut être qualifiée de pratique commerciale trompeuse (art. L 132-2 Code conso, amende jusqu'à 300 000 €).",
+      "Les sanctions varient selon la mention omise. Une mention de facturation B2B de droit commun manquante (date, identification, conditions de paiement, escompte, pénalités, indemnité forfaitaire) est sanctionnée par une amende administrative de 75 000 € (personne physique) à 2 000 000 € (personne morale), doublée en cas de récidive — Code de commerce art. L 441-9 (plafond porté à 2 M€ par la loi DDADUE 2023). Une mention TVA erronée ou omise expose à 15 € par mention manquante, plafonnés à 25 % du montant facturé (CGI art. 1737-II). L'absence de la mention médiateur de la consommation coûte jusqu'à 15 000 € (personne morale). Et l'absence de mention d'assurance décennale sur le document peut être qualifiée de pratique commerciale trompeuse (art. L 132-2 Code conso, amende jusqu'à 300 000 € PP / 1,5 M€ PM ou 10 % du CA) ; le défaut de souscription lui-même est puni par l'art. L 243-3 du Code des assurances (75 000 € + 6 mois).",
   },
   {
     question: 'Dois-je faire signer mes devis par le client ?',
@@ -29,12 +29,12 @@ export const mentionsObligatoiresFAQ: FAQItem[] = [
   {
     question: 'Dois-je mentionner l’assurance décennale sur tous mes documents ?',
     answer:
-      "Oui, dès lors que vous exercez une activité de construction soumise à l'obligation d'assurance décennale (loi Spinetta — art. L 241-1 Code des assurances). Vous devez indiquer : le nom de l'assureur ou de l'organisme de garantie, le numéro de contrat, la couverture géographique (France métropolitaine, DROM, etc.). Cette obligation a été renforcée par la loi Macron du 6 août 2015 : la mention doit figurer sur les devis et factures destinés à des consommateurs ET sur ceux destinés aux professionnels. L'omission est constitutive d'une pratique commerciale trompeuse.",
+      "Oui, dès lors que vous exercez une activité de construction soumise à l'obligation d'assurance décennale (loi Spinetta — art. L 241-1 du Code des assurances). Vous devez indiquer : le nom de l'assureur ou de l'organisme de garantie, le numéro de contrat, la couverture géographique (France métropolitaine, DROM, etc.). Cette obligation a été renforcée par la loi Macron du 6 août 2015 : la mention doit figurer sur les devis et factures destinés à des consommateurs ET sur ceux destinés aux professionnels. L'omission sur le document est constitutive d'une pratique commerciale trompeuse (art. L 132-2 Code conso, amende jusqu'à 300 000 € PP / 1,5 M€ PM ou 10 % du CA). Le défaut de souscription lui-même est puni par l'art. L 243-3 du Code des assurances (75 000 € + 6 mois d'emprisonnement).",
   },
   {
     question: 'Quelle mention TVA selon le type de travaux ?',
     answer:
-      "Quatre cas types. En franchise en base (sous les seuils art. 293 B CGI, plafonds 2026 : 39 100 € prestations / 101 000 € travaux) : « TVA non applicable, art. 293 B du CGI ». En sous-traitance BTP avec donneur d'ordre assujetti : « Autoliquidation — TVA due par le preneur, art. 283-2 nonies du CGI ». En rénovation de logement de plus de 2 ans pour un particulier : taux 10 % avec attestation client à conserver. En travaux d'amélioration énergétique éligibles (isolation, chaudière à condensation) : taux 5,5 %. Pour le neuf et la plupart des autres cas : 20 %. Notre Calculateur TVA autoliquidation BTP vous guide.",
+      "Quatre cas types. En franchise en base (sous les seuils art. 293 B CGI, plafonds 2026 : 37 500 € prestations / 85 000 € livraisons de biens — la réforme du seuil unique à 25 000 € a été suspendue en mars 2025) : « TVA non applicable, art. 293 B du CGI ». En sous-traitance BTP avec donneur d'ordre assujetti : « Autoliquidation — TVA due par le preneur, art. 283-2 nonies du CGI ». En rénovation de logement de plus de 2 ans pour un particulier : taux 10 % avec attestation client à conserver. En travaux d'amélioration énergétique éligibles (isolation, chaudière à condensation) : taux 5,5 %. Pour le neuf et la plupart des autres cas : 20 %. Notre Calculateur TVA autoliquidation BTP vous guide.",
   },
   {
     question: 'La mention médiateur de la consommation est-elle obligatoire pour les pros ?',
@@ -44,6 +44,6 @@ export const mentionsObligatoiresFAQ: FAQItem[] = [
   {
     question: 'Que se passe-t-il si je ne mentionne pas les pénalités de retard ?',
     answer:
-      "Deux conséquences cumulatives. Juridiquement, en l'absence de mention contractuelle des pénalités, c'est le taux d'intérêt légal qui s'applique d'office (deux fois par an, fixé par arrêté — 4,22 % au 1er semestre 2026 pour les créances pro), ce qui est dérisoire face à un retard de paiement. Administrativement, l'absence des mentions « pénalités de retard » et « indemnité forfaitaire de 40 € » est sanctionnée par une amende de la DGCCRF pouvant aller jusqu'à 75 000 € (personne physique) ou 2 000 000 € (personne morale) — art. L 441-16 Code commerce. C'est l'une des mentions les plus contrôlées.",
+      "Deux conséquences cumulatives. Juridiquement, en l'absence de mention contractuelle des pénalités, c'est le taux d'intérêt légal qui s'applique d'office (deux fois par an, fixé par arrêté — 4,22 % au 1er semestre 2026 pour les créances pro), ce qui est dérisoire face à un retard de paiement. Administrativement, l'absence des mentions « pénalités de retard » et « indemnité forfaitaire de 40 € » est sanctionnée par une amende de la DGCCRF pouvant aller jusqu'à 75 000 € (personne physique) ou 2 000 000 € (personne morale), doublée en cas de récidive — art. L 441-9 du Code de commerce (plafond porté à 2 M€ par la loi DDADUE 2023). C'est l'une des mentions les plus contrôlées.",
   },
 ];

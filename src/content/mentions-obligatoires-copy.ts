@@ -27,7 +27,7 @@ export const mentionsObligatoiresCopy = {
     blocks: [
       {
         heading: '1. Identification de l’entreprise — le socle non négociable',
-        body: "Raison sociale, adresse du siège, SIRET, code APE/NAF, numéro RCS (commerçant) ou RM (artisan immatriculé à la Chambre des Métiers), forme juridique et capital social si vous êtes en société, numéro de TVA intracommunautaire dès lors que vous êtes assujetti. L'absence du SIRET sur une facture est sanctionnée d'une amende administrative pouvant aller jusqu'à 75 000 € pour une personne morale (Code commerce L 441-9).",
+        body: "Raison sociale, adresse du siège, SIRET, code APE/NAF, numéro RCS (commerçant) ou RM (artisan immatriculé à la Chambre des Métiers), forme juridique et capital social si vous êtes en société, numéro de TVA intracommunautaire dès lors que vous êtes assujetti. L'absence d'une mention obligatoire de facturation B2B est sanctionnée d'une amende administrative pouvant aller jusqu'à 75 000 € pour une personne physique et 2 000 000 € pour une personne morale, doublée en cas de récidive (Code de commerce art. L 441-9, plafond porté à 2 M€ par la loi DDADUE 2023).",
       },
       {
         heading: '2. Détail des prestations — le réflexe de la traçabilité',
@@ -39,7 +39,7 @@ export const mentionsObligatoiresCopy = {
       },
       {
         heading: '4. Assurance décennale & garanties — la spécificité BTP',
-        body: "L'article L 241-1 du Code des assurances (loi Spinetta) impose à toute entreprise du bâtiment de mentionner sur ses devis et factures les coordonnées de son assureur décennale, le numéro de police et la couverture géographique du contrat. À cela s'ajoutent les rappels des garanties légales applicables aux travaux : parfait achèvement (1 an), bon fonctionnement (2 ans), décennale (10 ans). L'absence de ces mentions n'est pas anodine : elle peut être assimilée à une pratique commerciale trompeuse et engage la responsabilité du dirigeant.",
+        body: "L'article L 241-1 du Code des assurances (loi Spinetta) impose à toute entreprise du bâtiment de souscrire et de mentionner sur ses devis et factures les coordonnées de son assureur décennale, le numéro de police et la couverture géographique du contrat. À cela s'ajoutent les rappels des garanties légales applicables aux travaux : parfait achèvement (1 an), bon fonctionnement (2 ans), décennale (10 ans). Sanction de l'absence de mention sur le document : pratique commerciale trompeuse au sens de l'article L 132-2 du Code de la consommation — jusqu'à 300 000 € (personne physique), 1,5 M€ (personne morale) ou 10 % du chiffre d'affaires. Le défaut de souscription elle-même est puni par l'article L 243-3 du Code des assurances (75 000 € + 6 mois d'emprisonnement).",
       },
       {
         heading: '5. Médiation de la consommation — obligation 2016 souvent ratée',
@@ -47,7 +47,7 @@ export const mentionsObligatoiresCopy = {
       },
       {
         heading: '6. Mentions TVA — autoliquidation, taux réduit, franchise',
-        body: "La mention TVA varie selon votre régime et la nature du chantier : « TVA non applicable, art. 293 B du CGI » en franchise en base, « Autoliquidation — art. 283-2 nonies du CGI » en sous-traitance BTP, « TVA à 10 % travaux d'amélioration de logement de plus de 2 ans » ou « TVA à 5,5 % travaux d'amélioration énergétique éligibles » selon le chantier. Une omission ou une mention erronée expose à une amende de 5 % du montant facturé (art. 1737 du CGI).",
+        body: "La mention TVA varie selon votre régime et la nature du chantier : « TVA non applicable, art. 293 B du CGI » en franchise en base, « Autoliquidation — art. 283-2 nonies du CGI » en sous-traitance BTP, « TVA à 10 % travaux d'amélioration de logement de plus de 2 ans » ou « TVA à 5,5 % travaux d'amélioration énergétique éligibles » selon le chantier. Une omission ou une mention erronée expose à une amende de 15 € par mention manquante, plafonnée à 25 % du montant facturé (CGI art. 1737-II).",
       },
     ],
   },

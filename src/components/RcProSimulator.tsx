@@ -407,7 +407,7 @@ export function RcProSimulator() {
               </div>
 
               <p className="border-t border-gray-100 pt-4 text-xs leading-relaxed text-gray-500">
-                Fourchette indicative — votre devis réel dépend du courtier, de la compagnie d'assurance et des spécificités de votre dossier (art. L 113-1 du Code des assurances).
+                Fourchette indicative — votre devis réel dépend du courtier, de la compagnie d'assurance et des spécificités de votre dossier. La RC Pro n'est pas légalement obligatoire en BTP (≠ décennale art. L 241-1 C. ass.) mais relève du droit commun (art. 1240 C. civ.) et est exigée dans la majorité des marchés (CCAG-Travaux 2021 art. 9, donneurs d'ordre B2B, organismes prêteurs).
               </p>
             </CardContent>
           </Card>

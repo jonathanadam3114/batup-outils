@@ -24,7 +24,7 @@ export const mentionTvaFAQ: FAQItem[] = [
   {
     question: 'La franchise en base permet-elle de facturer sans TVA ?',
     answer:
-      "Oui. La franchise en base de TVA (article 293 B du CGI) dispense l'entreprise de collecter la TVA, quel que soit le client ou le type de travaux. Les plafonds 2026 sont 39 100 € HT pour les prestations de service et 101 000 € HT pour les travaux. La mention « TVA non applicable — article 293 B du CGI » doit obligatoirement figurer sur chaque facture. Contrepartie : l'entreprise ne peut pas déduire la TVA sur ses propres achats (matériaux, outillage, sous-traitance), ce qui peut rendre la franchise moins avantageuse au-delà d'un certain volume d'achats.",
+      "Oui. La franchise en base de TVA (article 293 B du CGI) dispense l'entreprise de collecter la TVA, quel que soit le client ou le type de travaux. Plafonds 2026 — la réforme du seuil unique à 25 000 € a été suspendue en mars 2025 : 37 500 € HT (seuil) / 41 250 € HT (seuil majoré) pour les prestations de service, 85 000 € HT (seuil) / 93 500 € HT (seuil majoré) pour les livraisons de biens. La mention « TVA non applicable — article 293 B du CGI » doit obligatoirement figurer sur chaque facture. Contrepartie : l'entreprise ne peut pas déduire la TVA sur ses propres achats (matériaux, outillage, sous-traitance), ce qui peut rendre la franchise moins avantageuse au-delà d'un certain volume d'achats.",
   },
   {
     question: 'Que se passe-t-il si je me trompe de taux de TVA ?',

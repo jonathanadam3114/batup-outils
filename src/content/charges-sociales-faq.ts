@@ -19,7 +19,7 @@ export const chargesSocialesFAQ: FAQItem[] = [
   {
     question: 'Faut-il payer la TVA en plus des cotisations sociales ?',
     answer:
-      "La TVA n'est pas une charge personnelle mais une taxe que vous collectez pour l'État. En micro-entreprise, vous êtes en franchise de TVA jusqu'à 36 800 € (prestations) ou 91 900 € (achat-revente) de CA en 2026 : vous facturez sans TVA et ne la récupérez pas sur vos achats. Au-delà, ou en EI au réel / SARL / SAS, vous facturez la TVA et la reversez. En BTP rénovation logement, le taux est de 10 % ; en neuf, 20 %. La TVA est neutre fiscalement mais lourde en trésorerie : il faut la mettre de côté chaque mois.",
+      "La TVA n'est pas une charge personnelle mais une taxe que vous collectez pour l'État. En micro-entreprise, vous bénéficiez de la franchise en base de TVA (art. 293 B CGI) jusqu'à 37 500 € de CA HT pour les prestations de service (seuil majoré 41 250 €) ou 85 000 € pour les livraisons de biens (seuil majoré 93 500 €) en 2026 : vous facturez sans TVA et ne la récupérez pas sur vos achats. Plafonds 2026 — la réforme du seuil unique à 25 000 € a été suspendue en mars 2025. Au-delà, ou en EI au réel / SARL / SAS, vous facturez la TVA et la reversez. En BTP rénovation logement, le taux est de 10 % ; en neuf, 20 %. La TVA est neutre fiscalement mais lourde en trésorerie : il faut la mettre de côté chaque mois.",
   },
   {
     question: 'Faut-il choisir micro-entreprise ou EI au réel pour démarrer ?',

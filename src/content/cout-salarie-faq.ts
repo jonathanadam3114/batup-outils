@@ -34,7 +34,7 @@ export const coutSalarieFAQ: FAQItem[] = [
   {
     question: "Combien d'heures mensuelles compter pour un temps plein ?",
     answer:
-      "Le standard légal en France est de 151,67 heures mensuelles pour un temps plein de 35 heures hebdomadaires (35 × 52 ÷ 12). Pour calculer un coût horaire chargé réaliste dans le BTP, retenez plutôt 152 heures théoriques, ou descendez à 140-145 heures si vous voulez tenir compte des absences pour intempéries, formation et arrêts maladie sectoriels. Plus vous descendez le diviseur, plus le coût horaire monte — et plus votre devis sera prudent.",
+      "Le standard légal en France est de 151,67 heures mensuelles pour un temps plein de 35 heures hebdomadaires (35 × 52 ÷ 12). C'est la valeur utilisée par défaut dans ce calculateur. Pour un coût horaire chargé encore plus réaliste dans le BTP, descendez à 140-145 heures si vous voulez tenir compte des absences pour intempéries, formation et arrêts maladie sectoriels. Plus vous descendez le diviseur, plus le coût horaire monte — et plus votre devis sera prudent.",
   },
   {
     question: "Le forfait social et la part patronale mutuelle sont-ils inclus ?",

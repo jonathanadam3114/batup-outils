@@ -22,7 +22,7 @@ export const dgdCopy = {
   methodology: {
     title: 'Comment se calcule un décompte général définitif (DGD)',
     intro:
-      "Le DGD est le solde définitif d'un chantier : il fixe la somme due (ou à reverser) après la réception et avant la libération de la retenue de garantie. Pour les marchés publics, le mécanisme est cadré par le CCAG travaux 2021 (articles 12 et suivants). Pour les marchés privés, la pratique s'aligne le plus souvent sur ce même cadre. Voici les composants que le calculateur additionne.",
+      "Le DGD est le solde définitif d'un chantier : il fixe la somme due (ou à reverser) après la réception et avant la libération de la retenue de garantie. Pour les marchés publics, le mécanisme est cadré par le CCAG-Travaux 2021 (article 12.4) et par l'article R. 2191-11 du Code de la commande publique pour les délais de paiement. Pour les marchés privés, la pratique s'aligne le plus souvent sur ce même cadre. Voici les composants que le calculateur additionne.",
     blocks: [
       {
         heading: '1. Marché initial + avenants + révisions = montant définitif HT',
@@ -37,8 +37,8 @@ export const dgdCopy = {
         body: "Sur le montant définitif HT, on applique la TVA du marché (20 %, 10 % ou 5,5 %) pour obtenir le montant définitif TTC. On soustrait ensuite la totalité des acomptes et situations déjà encaissés TTC depuis le début du chantier. Si le total des acomptes dépasse le montant définitif TTC (par exemple à cause de pénalités importantes ou d'une révision négative), le DGD est négatif : vous devez rembourser le trop-perçu au maître d'ouvrage.",
       },
       {
-        heading: '4. Retenue de garantie : à libérer 1 an après réception sans réserves',
-        body: "La retenue de 5 % (Loi 71-584 du 16 juillet 1971) reste consignée jusqu'à 1 an après la date de réception, ou jusqu'à la levée écrite des réserves. Elle s'ajoute au solde du DGD au moment de sa libération, sauf si une caution bancaire personnelle et solidaire a été substituée dès le départ — auquel cas la retenue est nulle et le DGD intègre 100 % du dû. Activez l'option « Caution bancaire en substitution » du calculateur pour modéliser ce cas.",
+        heading: '4. Retenue de garantie : 5 % du TTC, à libérer 1 an après réception sans réserves',
+        body: "La retenue de 5 % (Loi 71-584 du 16 juillet 1971) se calcule sur le montant TTC et reste consignée jusqu'à 1 an après la date de réception, ou jusqu'à la levée écrite des réserves. Elle s'ajoute au solde du DGD au moment de sa libération, sauf si une caution bancaire personnelle et solidaire a été substituée dès le départ — auquel cas la retenue est nulle et le DGD intègre 100 % du dû. Activez l'option « Caution bancaire en substitution » du calculateur pour modéliser ce cas.",
       },
     ],
   },

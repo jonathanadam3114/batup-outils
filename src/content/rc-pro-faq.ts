@@ -4,7 +4,7 @@ export const rcProFAQ: FAQItem[] = [
   {
     question: "Quelle différence entre RC Pro et garantie décennale ?",
     answer:
-      "La garantie décennale couvre, pendant 10 ans après réception, les dommages qui compromettent la solidité de l'ouvrage ou le rendent impropre à sa destination (fissures structurelles, infiltrations, affaissement). La RC Pro (Responsabilité Civile Professionnelle) couvre les dommages causés à des tiers pendant ou après les travaux, en dehors du périmètre des garanties obligatoires : un voisin inondé pendant le chantier, un client blessé par votre matériel, un dégât accidentel chez le client, une faute professionnelle pendant l'exécution. Les deux contrats sont obligatoires (art. L 113-1 du Code des assurances) et complémentaires — l'un ne remplace jamais l'autre.",
+      "La garantie décennale couvre, pendant 10 ans après réception, les dommages qui compromettent la solidité de l'ouvrage ou le rendent impropre à sa destination (fissures structurelles, infiltrations, affaissement) ; elle est légalement obligatoire en BTP (art. L 241-1 du Code des assurances, loi Spinetta). La RC Pro (Responsabilité Civile Professionnelle) couvre les dommages causés à des tiers pendant ou après les travaux, en dehors du périmètre des garanties obligatoires : un voisin inondé pendant le chantier, un client blessé par votre matériel, un dégât accidentel chez le client, une faute professionnelle pendant l'exécution. La RC Pro relève du droit commun de la responsabilité (art. 1240 du Code civil) : elle n'est pas légalement obligatoire en BTP, mais elle est exigée contractuellement par presque tous les maîtres d'ouvrage. Les deux contrats sont complémentaires — l'un ne remplace jamais l'autre.",
   },
   {
     question: "Combien coûte une RC Pro BTP en 2026 ?",
@@ -14,7 +14,7 @@ export const rcProFAQ: FAQItem[] = [
   {
     question: "La RC Pro est-elle obligatoire dans le BTP ?",
     answer:
-      "Oui. L'article L 113-1 du Code des assurances et la loi Spinetta de 1978 imposent à tout professionnel du bâtiment de souscrire une Responsabilité Civile Professionnelle, en complément de la décennale. Elle couvre les dommages causés à des tiers (clients, voisins, passants, livreurs) pendant ou après l'exécution des travaux, sur les volets qui ne relèvent pas des garanties obligatoires (décennale, biennale, parfait achèvement). Sans RC Pro, un sinistre tiers est à votre charge personnelle — y compris vos biens personnels si vous êtes en entreprise individuelle.",
+      "Pas légalement, contrairement à la décennale (art. L 241-1 du Code des assurances, loi Spinetta) qui, elle, est strictement obligatoire pour toute activité de construction. La RC Pro relève du droit commun de la responsabilité civile (art. 1240 du Code civil pour les dommages aux tiers) : aucun texte n'impose à un artisan BTP de la souscrire. Cependant, elle est exigée contractuellement dans la quasi-totalité des marchés : maîtres d'ouvrage publics (CCAG-Travaux 2021 art. 9, obligation d'assurance préalable au démarrage), donneurs d'ordre B2B dans leurs conditions générales, organismes prêteurs avant déblocage de fonds. En pratique, vous ne pouvez pas exercer durablement sans elle. Et sans RC Pro, un sinistre tiers est à votre charge personnelle — y compris vos biens personnels si vous êtes en entreprise individuelle.",
   },
   {
     question: "Que couvre exactement la RC Pro d'un artisan BTP ?",

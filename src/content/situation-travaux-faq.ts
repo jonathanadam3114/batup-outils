@@ -12,9 +12,9 @@ export const situationTravauxFAQ: FAQItem[] = [
       "La méthode standard du BTP français est l'avancement physique : on mesure le pourcentage de travaux réalisés par rapport au total du marché, et on multiplie par le montant HT. Sur un marché de 100 000 € HT avec 30 % d'avancement, le cumul des travaux est de 30 000 € HT. La situation N s'obtient en déduisant le cumul des situations précédentes. Certains marchés (notamment dans le génie civil) appliquent la méthode du coût engagé (cost-to-cost) : on facture en proportion des coûts décaissés. Pour les marchés bâtiment classiques, restez sur l'avancement physique, plus transparent et plus aligné avec les attentes du maître d'œuvre.",
   },
   {
-    question: 'La retenue de garantie de 5 % s\'applique-t-elle sur chaque situation ?',
+    question: 'La retenue de garantie de 5 % s\'applique-t-elle sur le HT ou sur le TTC ?',
     answer:
-      "Oui. La Loi n° 71-584 du 16 juillet 1971 autorise le maître d'ouvrage à prélever 5 % sur chaque situation TTC, à condition de consigner ces sommes auprès d'un organisme de cautionnement agréé ou d'un compte bancaire dédié. La retenue est plafonnée à 5 % du marché global TTC, peu importe le nombre de situations. Elle se libère 1 an après la réception sans réserves, ou après la levée écrite des réserves. Pour éviter d'immobiliser cette trésorerie, vous pouvez substituer une caution bancaire à la retenue : le client est légalement obligé d'accepter, et vous percevez 100 % de chaque situation.",
+      "Sur le TTC. La Loi n° 71-584 du 16 juillet 1971 autorise le maître d'ouvrage à prélever 5 % du montant TTC de chaque acompte ou situation, à condition de consigner ces sommes auprès d'un organisme de cautionnement agréé ou d'un compte bancaire dédié. L'ordre de calcul est donc : situation brute HT → ajout de la TVA → 5 % du TTC déduits du TTC → situation TTC à percevoir. Le plafond global reste 5 % du marché TTC, peu importe le nombre de situations. La retenue se libère 1 an après la réception sans réserves, ou après la levée écrite des réserves. Pour éviter d'immobiliser cette trésorerie, vous pouvez substituer une caution bancaire à la retenue : le client est légalement obligé d'accepter, et vous percevez 100 % de chaque situation.",
   },
   {
     question: 'Quand peut-on émettre une situation ?',

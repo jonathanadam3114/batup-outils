@@ -42,7 +42,7 @@ export const mentionTvaCopy = {
       },
       {
         heading: '5. Franchise en base — sous les seuils (art. 293 B CGI)',
-        body: "Si votre entreprise est en franchise en base de TVA (CA HT inférieur à 39 100 € pour les prestations de service et 101 000 € pour les travaux en 2026), vous ne facturez jamais de TVA, quel que soit le client ou le type de travaux. La mention « TVA non applicable — article 293 B du CGI » doit figurer sur toutes les factures. Vous ne pouvez pas non plus déduire la TVA sur vos propres achats. La sortie de franchise est automatique au dépassement des seuils majorés.",
+        body: "Si votre entreprise est en franchise en base de TVA (CA HT inférieur à 37 500 € pour les prestations de service — seuil majoré 41 250 € — et 85 000 € pour les livraisons de biens — seuil majoré 93 500 € — en 2026), vous ne facturez jamais de TVA, quel que soit le client ou le type de travaux. Plafonds 2026 — la réforme du seuil unique à 25 000 € a été suspendue en mars 2025. La mention « TVA non applicable — article 293 B du CGI » doit figurer sur toutes les factures. Vous ne pouvez pas non plus déduire la TVA sur vos propres achats. La sortie de franchise est automatique au dépassement des seuils majorés.",
       },
       {
         heading: "6. L'attestation TVA — sécurité fiscale obligatoire",

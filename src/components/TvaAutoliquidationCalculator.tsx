@@ -368,8 +368,9 @@ function VerdictPanel({
         </div>
 
         <p className="text-xs text-gray-500">
-          Référence : article 293 B du CGI. Plafonds 2026 : 39 100 € pour les prestations de
-          service, 101 000 € pour les travaux.
+          Référence : article 293 B du CGI. Plafonds 2026 : 37 500 € (seuil majoré 41 250 €) pour
+          les prestations de service, 85 000 € (seuil majoré 93 500 €) pour les livraisons de biens.
+          La réforme du seuil unique à 25 000 € a été suspendue en mars 2025.
         </p>
       </div>
     );

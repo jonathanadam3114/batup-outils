@@ -26,7 +26,7 @@ export const statutJuridiqueCopy = {
     blocks: [
       {
         heading: '1. CA prévu : le premier filtre légal',
-        body: "Le régime micro-entreprise est plafonné à 91 900 € HT en achat-revente et 36 800 € HT en prestations pures (seuils 2026). Au-delà, vous basculez automatiquement au réel. En dessous de 30 000 € de CA, la micro reste presque toujours plus avantageuse car la fiscalité forfaitaire colle au volume réel. Au-delà de 200 000 €, la SARL ou la SAS deviennent quasiment incontournables pour optimiser la fiscalité.",
+        body: "Le régime micro-entreprise est plafonné à 188 700 € HT en achat-revente et 77 700 € HT en prestations pures (seuils 2026, loi de finances 2023 gelée jusqu'à fin 2026). Au-delà, vous basculez automatiquement au réel. En dessous de 30 000 € de CA, la micro reste presque toujours plus avantageuse car la fiscalité forfaitaire colle au volume réel. Au-delà de 200 000 €, la SARL ou la SAS deviennent quasiment incontournables pour optimiser la fiscalité.",
       },
       {
         heading: '2. Solo ou associés : forme sociétale obligatoire ?',

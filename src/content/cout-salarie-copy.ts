@@ -38,7 +38,7 @@ export const coutSalarieCopy = {
       },
       {
         heading: '4. Coût horaire chargé : à intégrer dans chaque devis',
-        body: "Coût total employeur ÷ heures mensuelles facturables (≈ 152 h pour un temps plein). C'est le seuil minimum pour ne pas perdre d'argent en facturant une heure de ce salarié. Si vous facturez en dessous, vous payez de votre poche. Si vous facturez au coût horaire pur sans marge, vous travaillez à perte une fois les charges fixes (local, véhicules, assurances) intégrées.",
+        body: "Coût total employeur ÷ heures mensuelles facturables (151,67 h pour un temps plein 35 h = 35 × 52 ÷ 12). C'est le seuil minimum pour ne pas perdre d'argent en facturant une heure de ce salarié. Si vous facturez en dessous, vous payez de votre poche. Si vous facturez au coût horaire pur sans marge, vous travaillez à perte une fois les charges fixes (local, véhicules, assurances) intégrées.",
       },
     ],
   },

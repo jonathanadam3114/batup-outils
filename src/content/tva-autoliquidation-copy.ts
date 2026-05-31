@@ -42,7 +42,7 @@ export const tvaAutoliquidationCopy = {
       },
       {
         heading: '5. Le cas particulier de la franchise en base',
-        body: "Si vous êtes en franchise en base de TVA (art. 293 B du CGI, plafonds 2026 : 39 100 € pour les prestations de service, 101 000 € pour les travaux), l'autoliquidation ne s'applique pas : vous ne facturez aucune TVA dans tous les cas, et la mention « TVA non applicable — art. 293 B du CGI » remplace toute autre mention TVA.",
+        body: "Si vous êtes en franchise en base de TVA (art. 293 B du CGI, plafonds 2026 : 37 500 € — seuil majoré 41 250 € — pour les prestations de service, 85 000 € — seuil majoré 93 500 € — pour les livraisons de biens ; plafonds 2026 — la réforme du seuil unique à 25 000 € a été suspendue en mars 2025), l'autoliquidation ne s'applique pas : vous ne facturez aucune TVA dans tous les cas, et la mention « TVA non applicable — art. 293 B du CGI » remplace toute autre mention TVA.",
       },
     ],
   },

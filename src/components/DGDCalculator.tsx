@@ -9,7 +9,8 @@ interface Inputs {
   revisionsHT: number;
   penalitesHT: number;
   acomptesPercusTTC: number;
-  retenueGarantieHT: number;
+  retenueGarantieTTC: number;
+  retenueAutoCompute: boolean;
   cautionBancaire: boolean;
   tvaPct: number;
 }
@@ -20,7 +21,8 @@ const DEFAULTS: Inputs = {
   revisionsHT: 0,
   penalitesHT: 0,
   acomptesPercusTTC: 0,
-  retenueGarantieHT: 0,
+  retenueGarantieTTC: 0,
+  retenueAutoCompute: true,
   cautionBancaire: false,
   tvaPct: 20,
 };
@@ -47,7 +49,7 @@ const VERDICT_CONFIG: Record<
   'a-percevoir': {
     label: 'Solde à percevoir',
     description:
-      "Le maître d'ouvrage vous doit le solde indiqué ci-dessus. À encaisser sous 30 jours après acceptation du DGD (délai légal marchés publics).",
+      "Le maître d'ouvrage vous doit le solde indiqué ci-dessus. À encaisser sous 30 jours après acceptation du DGD (CCAG-Travaux 2021 art. 12.4.4 + art. R. 2191-11 du Code de la commande publique).",
     classes: 'bg-emerald-50 border-emerald-300 text-emerald-800',
     Icon: CheckCircle,
   },
@@ -94,7 +96,11 @@ export function DGDCalculator() {
     const tva = montantDefinitifHT * (inputs.tvaPct / 100);
     const montantDefinitifTTC = montantDefinitifHT + tva;
 
-    const retenueEffective = inputs.cautionBancaire ? 0 : inputs.retenueGarantieHT;
+    const retenueAuto = montantDefinitifTTC * 0.05;
+    const retenueSaisie = inputs.retenueAutoCompute
+      ? retenueAuto
+      : inputs.retenueGarantieTTC;
+    const retenueEffective = inputs.cautionBancaire ? 0 : retenueSaisie;
     const solde =
       montantDefinitifTTC - inputs.acomptesPercusTTC - retenueEffective;
 
@@ -105,6 +111,7 @@ export function DGDCalculator() {
       montantDefinitifHT,
       tva,
       montantDefinitifTTC,
+      retenueAuto,
       retenueEffective,
       solde,
       verdict,
@@ -202,13 +209,36 @@ export function DGDCalculator() {
               value={inputs.acomptesPercusTTC}
               onChange={(v) => updateNumber('acomptesPercusTTC', v)}
             />
-            <Field
-              label="Retenue de garantie 5 % consignée HT"
-              hint="Montant déjà retenu sur les situations précédentes (Loi 71-584). Libérée 1 an après réception sans réserves."
-              suffix="€"
-              value={inputs.retenueGarantieHT}
-              onChange={(v) => updateNumber('retenueGarantieHT', v)}
+            <ToggleRow
+              label="Calcul auto de la retenue (5 % du marché TTC) ?"
+              hint="Activé par défaut : la retenue est calculée à 5 % du montant définitif TTC, conformément à la Loi 71-584. Désactivez si vous voulez saisir un montant manuel (cas particulier d'avenants intermédiaires)."
+              value={inputs.retenueAutoCompute}
+              onChange={(v) => updateBool('retenueAutoCompute', v)}
             />
+            {inputs.retenueAutoCompute ? (
+              <div className="rounded-md border border-gray-200 bg-gray-50 p-3 text-sm">
+                <div className="flex items-center justify-between">
+                  <span className="text-gray-600">
+                    Retenue de garantie 5 % (TTC) — calculée auto
+                  </span>
+                  <span className="font-semibold text-gray-900">
+                    {fmtEuro(results.retenueAuto)}
+                  </span>
+                </div>
+                <p className="mt-1 text-xs text-gray-500">
+                  5 % du montant définitif TTC. Libérée 1 an après réception sans réserves
+                  (Loi 71-584 du 16 juillet 1971).
+                </p>
+              </div>
+            ) : (
+              <Field
+                label="Retenue de garantie 5 % retenue (TTC)"
+                hint="Montant TTC déjà retenu sur les situations précédentes (Loi 71-584, calculée sur le TTC). Libérée 1 an après réception sans réserves."
+                suffix="€"
+                value={inputs.retenueGarantieTTC}
+                onChange={(v) => updateNumber('retenueGarantieTTC', v)}
+              />
+            )}
             <ToggleRow
               label="Caution bancaire en substitution ?"
               hint="Si oui, aucune retenue n'a été prélevée : la caution remplace la consignation. Le solde du DGD inclut alors 100 % du dû."
@@ -288,7 +318,7 @@ export function DGDCalculator() {
                   label={
                     inputs.cautionBancaire
                       ? '− Retenue (caution = 0)'
-                      : '− Retenue de garantie HT'
+                      : '− Retenue de garantie 5 % (TTC)'
                   }
                   value={fmtEuro(results.retenueEffective)}
                   muted
@@ -296,10 +326,10 @@ export function DGDCalculator() {
                 <Row label="= Solde DGD TTC" value={fmtEuroSigned(results.solde)} bold />
               </div>
 
-              {inputs.retenueGarantieHT > 0 && !inputs.cautionBancaire && (
+              {results.retenueEffective > 0 && !inputs.cautionBancaire && (
                 <div className="rounded-lg border border-gray-200 bg-white p-3 text-xs text-gray-600">
                   <p className="font-semibold text-gray-900">
-                    Retenue de garantie : {fmtEuro(inputs.retenueGarantieHT)}
+                    Retenue de garantie consignée (TTC) : {fmtEuro(results.retenueEffective)}
                   </p>
                   <p className="mt-1">
                     À libérer 1 an après la réception sans réserves (Loi 71-584 du 16 juillet

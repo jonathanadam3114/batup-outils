@@ -195,7 +195,7 @@ export function MentionTvaGenerator() {
                 {
                   value: 'b',
                   label:
-                    'Franchise en base (CA HT < 39 100 € prestations ou < 101 000 € travaux en 2026)',
+                    'Franchise en base (CA HT < 37 500 € prestations ou < 85 000 € livraisons de biens en 2026)',
                 },
               ]}
               value={inputs.q4}
@@ -413,7 +413,7 @@ const VERDICT_STYLES: Record<Verdict, VerdictStyle> = {
     title: 'Franchise en base — pas de TVA',
     blurb:
       "Votre entreprise est en franchise en base : aucune TVA collectée quel que soit le client ou le type de travaux. Pas de déduction non plus sur vos propres achats. Surveillez le franchissement des seuils en cours d'année.",
-    legalRef: 'Article 293 B du CGI — franchise en base. Plafonds 2026 : 39 100 € / 101 000 €.',
+    legalRef: 'Article 293 B du CGI — franchise en base. Plafonds 2026 : 37 500 € prestations (majoré 41 250 €) / 85 000 € livraisons de biens (majoré 93 500 €). La réforme du seuil unique à 25 000 € a été suspendue en mars 2025.',
     testId: 'verdict-franchise',
     taux: 0,
     tauxLabel: '0 % (franchise)',

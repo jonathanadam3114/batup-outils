@@ -4,7 +4,7 @@ export const dgdFAQ: FAQItem[] = [
   {
     question: "Qu'est-ce que le DGD (décompte général définitif) dans le BTP ?",
     answer:
-      "Le DGD est le solde comptable et juridique d'un marché de travaux. Il intègre le marché initial, les avenants signés, les révisions de prix, les pénalités appliquées et les acomptes déjà perçus. Sa signature par les parties éteint définitivement les comptes : aucune réclamation financière ne pourra plus être présentée après acceptation. En marché public, le CCAG travaux 2021 (articles 12.4 et 12.5) encadre la procédure d'établissement et d'acceptation du DGD. En marché privé, il est fortement recommandé de prévoir une procédure équivalente dans le CCAP pour éviter les litiges en fin de chantier.",
+      "Le DGD est le solde comptable et juridique d'un marché de travaux. Il intègre le marché initial, les avenants signés, les révisions de prix, les pénalités appliquées et les acomptes déjà perçus. Sa signature par les parties éteint définitivement les comptes : aucune réclamation financière ne pourra plus être présentée après acceptation. En marché public, le CCAG-Travaux 2021 article 12.4 (et 12.4.4 pour la notification du décompte général par le maître d'ouvrage) encadre la procédure d'établissement et d'acceptation du DGD, complété par l'article R. 2191-11 du Code de la commande publique pour le délai global de paiement de 30 jours. En marché privé, il est fortement recommandé de prévoir une procédure équivalente dans le CCAP pour éviter les litiges en fin de chantier.",
   },
   {
     question: 'Quelle est la différence entre DGD et DGDF ?',
@@ -19,7 +19,7 @@ export const dgdFAQ: FAQItem[] = [
   {
     question: 'Quand le DGD doit-il être établi ?',
     answer:
-      "Le DGDF (projet) doit être transmis par l'entrepreneur dans les 30 jours suivant la notification de la réception (CCAG travaux 2021, article 12.3). Le maître d'œuvre dispose ensuite de 30 jours pour le vérifier et le transmettre au maître d'ouvrage. Le maître d'ouvrage notifie le décompte général à l'entreprise dans les 30 jours après réception du DGDF visé. L'entreprise dispose enfin de 30 jours pour accepter, contester ou se taire (acceptation tacite). Total : 90 à 120 jours après la réception pour clôturer définitivement les comptes. En marché privé, ces délais sont souvent réduits dans le CCAP — vérifiez bien les vôtres.",
+      "Le projet de décompte final est transmis par l'entrepreneur dans les 30 jours suivant la notification de la réception (CCAG-Travaux 2021, article 12.4). Le maître d'œuvre dispose ensuite de 30 jours pour le vérifier et le transmettre au maître d'ouvrage. Le maître d'ouvrage notifie le décompte général à l'entreprise dans les 30 jours après réception du projet de décompte final (CCAG-Travaux 2021 art. 12.4.4). L'entreprise dispose enfin de 30 jours pour accepter, contester ou se taire (acceptation tacite). Total : 90 à 120 jours après la réception pour clôturer définitivement les comptes. Le délai de paiement effectif du solde DGD est ensuite de 30 jours (art. R. 2191-11 du Code de la commande publique). En marché privé, ces délais sont souvent réduits dans le CCAP — vérifiez bien les vôtres.",
   },
   {
     question: 'Peut-on contester un DGD après signature ?',
@@ -29,7 +29,7 @@ export const dgdFAQ: FAQItem[] = [
   {
     question: 'Comment imputer la retenue de garantie sur le DGD ?',
     answer:
-      "La retenue de 5 % (Loi 71-584 du 16 juillet 1971) ne fait pas partie du solde du DGD initial : elle reste consignée et se libère 1 an après la réception, ou après la levée écrite des réserves. Le calculateur la sépare explicitement pour cette raison. Le DGD officiel mentionne le montant retenu et la date prévisionnelle de libération. Si vous avez fourni une caution bancaire personnelle et solidaire en substitution, la retenue est nulle et la totalité du solde se règle immédiatement à acceptation du DGD. Activez l'option « Caution bancaire en substitution » du calculateur pour modéliser ce scénario.",
+      "La retenue de 5 % (Loi 71-584 du 16 juillet 1971), calculée sur le TTC, ne fait pas partie du solde du DGD initial : elle reste consignée et se libère 1 an après la réception, ou après la levée écrite des réserves. Le calculateur la sépare explicitement pour cette raison et l'auto-calcule à 5 % du marché TTC définitif (vous pouvez désactiver le calcul auto pour saisir un montant spécifique). Le DGD officiel mentionne le montant retenu et la date prévisionnelle de libération. Si vous avez fourni une caution bancaire personnelle et solidaire en substitution, la retenue est nulle et la totalité du solde se règle immédiatement à acceptation du DGD. Activez l'option « Caution bancaire en substitution » du calculateur pour modéliser ce scénario.",
   },
   {
     question: 'Que faire si le solde DGD est négatif (trop-perçu) ?',

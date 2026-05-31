@@ -55,7 +55,7 @@ const DEVIS_ITEMS: ChecklistItem[] = [
     id: 'd-siret',
     label: 'SIRET de l’entreprise',
     legalRef: 'Code commerce L 441-9',
-    risk: 'Amende administrative jusqu’à 75 000 € (PP) / 375 000 € (PM).',
+    risk: 'Amende administrative jusqu’à 75 000 € (PP) / 2 000 000 € (PM) — doublée en cas de récidive.',
     category: 'identification',
   },
   {
@@ -149,8 +149,8 @@ const DEVIS_ITEMS: ChecklistItem[] = [
   {
     id: 'd-decennale',
     label: 'Assurance décennale : assureur + n° contrat + couverture géographique',
-    legalRef: 'Loi Spinetta — Code des assurances art. L 241-1',
-    risk: 'Pratique commerciale trompeuse, amende jusqu’à 300 000 €.',
+    legalRef: 'Loi Spinetta — C. assurances art. L 241-1 ; sanction C. conso art. L 132-2',
+    risk: "Mention obligatoire (loi Spinetta, art. L 241-1 C. ass.) ; absence sur le document = pratique commerciale trompeuse art. L 132-2 C. conso (amende 300 000 € PP / 1,5 M€ PM ou 10 % du CA). Défaut de souscription elle-même : art. L 243-3 C. ass. (75 000 € + 6 mois).",
     category: 'btp',
   },
   {
@@ -203,14 +203,14 @@ const FACTURE_ITEMS: ChecklistItem[] = [
     id: 'f-raison',
     label: 'Nom et adresse de l’entreprise (raison sociale)',
     legalRef: 'Code commerce L 441-9',
-    risk: 'Amende administrative jusqu’à 75 000 € (PP) / 375 000 € (PM).',
+    risk: 'Amende administrative jusqu’à 75 000 € (PP) / 2 000 000 € (PM) — doublée en cas de récidive.',
     category: 'identification',
   },
   {
     id: 'f-siret',
     label: 'SIRET',
     legalRef: 'Code commerce L 441-9',
-    risk: 'Amende administrative jusqu’à 75 000 € (PP) / 375 000 € (PM).',
+    risk: 'Amende administrative jusqu’à 75 000 € (PP) / 2 000 000 € (PM) — doublée en cas de récidive.',
     category: 'identification',
   },
   {
@@ -311,15 +311,15 @@ const FACTURE_ITEMS: ChecklistItem[] = [
   {
     id: 'f-mention-tva',
     label: 'Mention TVA (autoliquidation, taux réduit, franchise selon cas)',
-    legalRef: 'CGI art. 283-2 nonies / art. 293 B',
-    risk: 'Amende de 5 % du montant facturé (CGI art. 1737).',
+    legalRef: 'CGI art. 283-2 nonies / art. 293 B ; sanction CGI art. 1737-II',
+    risk: 'Amende de 15 € par mention manquante, plafonnée à 25 % du montant facturé (CGI art. 1737-II).',
     category: 'btp',
   },
   {
     id: 'f-decennale',
     label: 'Assurance décennale (assureur + n° contrat + couverture)',
-    legalRef: 'Loi Spinetta — Code des assurances art. L 241-1',
-    risk: 'Pratique commerciale trompeuse, amende jusqu’à 300 000 €.',
+    legalRef: 'Loi Spinetta — C. assurances art. L 241-1 ; sanction C. conso art. L 132-2',
+    risk: "Mention obligatoire (loi Spinetta, art. L 241-1 C. ass.) ; absence sur le document = pratique commerciale trompeuse art. L 132-2 C. conso (amende 300 000 € PP / 1,5 M€ PM ou 10 % du CA). Défaut de souscription elle-même : art. L 243-3 C. ass. (75 000 € + 6 mois).",
     category: 'btp',
   },
   {

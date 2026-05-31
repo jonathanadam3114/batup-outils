@@ -12,7 +12,7 @@ export const rcProCopy = {
   },
   hero: {
     h1: 'Simulateur RC Pro BTP : prix par métier en 2026',
-    lede: "Combien va vous coûter votre Responsabilité Civile Professionnelle en 2026 ? La RC Pro couvre les dommages causés à des tiers pendant ou après les travaux — un poste obligatoire à ne pas confondre avec la décennale. Estimez votre fourchette en 1 minute, gratuitement et sans inscription.",
+    lede: "Combien va vous coûter votre Responsabilité Civile Professionnelle en 2026 ? La RC Pro couvre les dommages causés à des tiers pendant ou après les travaux. Contrairement à la décennale, elle n'est pas légalement obligatoire en BTP, mais elle est exigée en pratique par la quasi-totalité des marchés (publics, donneurs d'ordre B2B, prêteurs). Estimez votre fourchette en 1 minute, gratuitement et sans inscription.",
   },
   ctaBanner: {
     title: 'Une fois assuré, pilotez votre activité au quotidien',
@@ -22,11 +22,11 @@ export const rcProCopy = {
   methodology: {
     title: 'Comment on estime le prix de votre RC Pro BTP',
     intro:
-      "La Responsabilité Civile Professionnelle (RC Pro) couvre les dommages causés à des tiers (clients, voisins, passants) pendant ou après les travaux, sur les volets qui ne relèvent pas des garanties obligatoires (décennale, biennale, parfait achèvement). Elle est exigée par l'article L 113-1 du Code des assurances pour toute activité du bâtiment. Notre fourchette s'appuie sur les barèmes courtiers BTP 2026 et combine cinq facteurs.",
+      "La Responsabilité Civile Professionnelle (RC Pro) couvre les dommages causés à des tiers (clients, voisins, passants) pendant ou après les travaux, sur les volets qui ne relèvent pas des garanties obligatoires (décennale, biennale, parfait achèvement). Elle n'est pas légalement obligatoire en BTP (contrairement à la décennale, art. L 241-1 du Code des assurances) : elle découle du droit commun de la responsabilité (art. 1240 du Code civil pour les dommages aux tiers) et reste exigée contractuellement dans la quasi-totalité des marchés — maîtres d'ouvrage publics (CCAG-Travaux 2021 art. 9), donneurs d'ordre B2B, organismes prêteurs. Notre fourchette s'appuie sur les barèmes courtiers BTP 2026 et combine cinq facteurs.",
     blocks: [
       {
         heading: '1. RC Pro vs décennale : deux contrats à ne pas confondre',
-        body: "La décennale couvre les dommages à l'ouvrage (fissures, infiltrations, défaut structurel) pendant 10 ans après réception. La RC Pro couvre les dommages aux tiers : un voisin inondé pendant le chantier, un client blessé par un échafaudage, un dégât matériel hors du périmètre des travaux, une faute professionnelle pendant l'exécution. Les deux contrats sont obligatoires et complémentaires. Beaucoup de courtiers BTP proposent des packages combinés moins chers que les contrats séparés.",
+        body: "La décennale (art. L 241-1 du Code des assurances, loi Spinetta) est légalement obligatoire et couvre les dommages à l'ouvrage (fissures, infiltrations, défaut structurel) pendant 10 ans après réception. La RC Pro couvre les dommages aux tiers : un voisin inondé pendant le chantier, un client blessé par un échafaudage, un dégât matériel hors du périmètre des travaux, une faute professionnelle pendant l'exécution. Elle n'est pas légalement obligatoire en BTP, mais reste exigée par la majorité des maîtres d'ouvrage et des donneurs d'ordre — c'est donc en pratique un contrat indispensable. Beaucoup de courtiers BTP proposent des packages combinés moins chers que les contrats séparés.",
       },
       {
         heading: '2. Le métier exercé : la base tarifaire',

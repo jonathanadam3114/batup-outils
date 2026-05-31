@@ -88,7 +88,7 @@ const COMPARE_TABLE: CompareRow[] = [
     key: 'plafond',
     label: 'Plafond CA',
     cells: {
-      micro: { good: 1, text: '36 800 € prestations / 91 900 € négoce' },
+      micro: { good: 1, text: '77 700 € prestations / 188 700 € négoce' },
       ei_reel: { good: 3, text: 'Aucun plafond' },
       eurl: { good: 3, text: 'Aucun plafond' },
       sarl: { good: 3, text: 'Aucun plafond' },
