@@ -2,6 +2,8 @@ import { useMemo, useState } from 'react';
 import { ArrowRight, AlertTriangle, HelpCircle, ExternalLink } from 'lucide-react';
 import { APP_BASE } from '@/lib/urls';
 import { Card, CardContent, CardHeader, CardTitle, Input, Label, Button } from './ui';
+import { StickyResultBar } from './StickyResultBar';
+import { computeRevisionIndexBT } from '@/lib/index-bt-math';
 
 interface IndexBTOption {
   code: string;
@@ -114,38 +116,11 @@ export function RevisionPrixIndexBTCalculator() {
 
   const results = useMemo(() => {
     const { prixInitial, bt0, btn, coefFixe, coefVariable } = inputs;
-    const coefSum = coefFixe + coefVariable;
-    const coefSumWarning = Math.abs(coefSum - 1) > 0.01;
+    const coefSumWarning = Math.abs(coefFixe + coefVariable - 1) > 0.01;
     const isValid =
       prixInitial > 0 && bt0 > 0 && btn > 0 && Number.isFinite(coefFixe) && Number.isFinite(coefVariable);
-
-    if (!isValid) {
-      return {
-        ratio: 0,
-        coefRevision: 0,
-        prixRevise: 0,
-        ecartAbsolu: 0,
-        ecartRelatif: 0,
-        coefSumWarning,
-        isValid: false,
-      };
-    }
-
-    const ratio = btn / bt0;
-    const coefRevision = coefFixe + coefVariable * ratio;
-    const prixRevise = prixInitial * coefRevision;
-    const ecartAbsolu = prixRevise - prixInitial;
-    const ecartRelatif = (ecartAbsolu / prixInitial) * 100;
-
-    return {
-      ratio,
-      coefRevision,
-      prixRevise,
-      ecartAbsolu,
-      ecartRelatif,
-      coefSumWarning,
-      isValid: true,
-    };
+    const core = computeRevisionIndexBT({ prixInitial, bt0, btn, coefFixe, coefVariable });
+    return { ...core, coefSumWarning, isValid };
   }, [inputs]);
 
   const ctaSignupHref = useMemo(() => {
@@ -157,7 +132,7 @@ export function RevisionPrixIndexBTCalculator() {
   }, [inputs.prixInitial, inputs.indexCode, results.prixRevise]);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-5">
+    <div className="grid gap-6 pb-20 lg:grid-cols-5 lg:pb-0">
       <div className="space-y-6 lg:col-span-3">
         <Card>
           <CardHeader>
@@ -371,6 +346,12 @@ export function RevisionPrixIndexBTCalculator() {
           </Card>
         </div>
       </div>
+
+      <StickyResultBar
+        label="Prix révisé HT"
+        value={fmtEuro(results.prixRevise)}
+        ctaHref={ctaSignupHref}
+      />
     </div>
   );
 }

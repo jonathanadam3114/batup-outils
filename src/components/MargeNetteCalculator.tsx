@@ -5,6 +5,7 @@ import { computeVerdict, type VerdictKind } from '@/lib/pricing';
 import { APP_BASE } from '@/lib/urls';
 import { Card, CardContent, CardHeader, CardTitle, Input, Label, Button } from './ui';
 import { ResultVerdict } from './ResultVerdict';
+import { StickyResultBar } from './StickyResultBar';
 
 type Mode = 'coefficient' | 'marge';
 
@@ -85,7 +86,7 @@ export function MargeNetteCalculator() {
   }, [results.coefficient, results.margeNette]);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-5">
+    <div className="grid gap-6 pb-20 lg:grid-cols-5 lg:pb-0">
       <div className="space-y-6 lg:col-span-3">
         <Card>
           <CardHeader>
@@ -235,6 +236,12 @@ export function MargeNetteCalculator() {
           </Card>
         </div>
       </div>
+
+      <StickyResultBar
+        label="Prix de vente HT"
+        value={fmtEuro(results.prixVente)}
+        ctaHref={ctaSignupHref}
+      />
     </div>
   );
 }

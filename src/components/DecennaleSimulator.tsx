@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { ArrowRight, AlertTriangle, TrendingUp, TrendingDown } from 'lucide-react';
 import { APP_BASE } from '@/lib/urls';
 import { Card, CardContent, CardHeader, CardTitle, Input, Label, Button } from './ui';
+import { StickyResultBar } from './StickyResultBar';
 
 type MetierKey =
   | 'electricien'
@@ -186,8 +187,14 @@ export function DecennaleSimulator() {
   const results = useMemo(() => {
     const base = METIERS[inputs.metier].base;
     const factors = computeFactors(inputs);
-    const adjustedMultiplier = factors.reduce((acc, f) => acc * f.multiplier, 1);
-    const adjustedBase = base * adjustedMultiplier;
+    const rawMultiplier = factors.reduce((acc, f) => acc * f.multiplier, 1);
+    // Garde-fou : sur des combinaisons extrêmes (gros CA × primo × gros
+    // effectif × sinistralité), le produit des facteurs peut atteindre ~8×,
+    // ce qui surestime la prime. On plafonne le multiplicateur global à 5×.
+    const MULTIPLIER_CAP = 5;
+    const cappedMultiplier = Math.min(rawMultiplier, MULTIPLIER_CAP);
+    const isCapped = rawMultiplier > MULTIPLIER_CAP;
+    const adjustedBase = base * cappedMultiplier;
     const min = adjustedBase * 0.85;
     const max = adjustedBase * 1.3;
     const moyMensuel = (min + max) / 2 / 12;
@@ -197,6 +204,7 @@ export function DecennaleSimulator() {
       max,
       moyMensuel,
       factors,
+      isCapped,
       isHigh: min > 5000,
       isRefus: inputs.sinistralite === '2+',
     };
@@ -213,7 +221,7 @@ export function DecennaleSimulator() {
   }, [inputs.metier]);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-5">
+    <div className="grid gap-6 pb-20 lg:grid-cols-5 lg:pb-0">
       <div className="space-y-6 lg:col-span-3">
         <Card>
           <CardHeader>
@@ -341,6 +349,13 @@ export function DecennaleSimulator() {
                 <Row label="Base de tarif métier" value={`${fmtEuro(results.base)}/an`} />
               </div>
 
+              {results.isCapped && (
+                <p className="rounded-md border border-gray-200 bg-gray-50 px-3 py-2 text-xs text-gray-600">
+                  Fourchette plafonnée : le cumul de vos facteurs de majoration dépasse ×5. Sur des
+                  profils aussi atypiques, seul un courtier peut chiffrer précisément le risque.
+                </p>
+              )}
+
               {results.isRefus ? (
                 <div
                   className="flex items-start gap-3 rounded-lg border border-rose-300 bg-rose-50 p-4 text-rose-800"
@@ -402,6 +417,12 @@ export function DecennaleSimulator() {
           </Card>
         </div>
       </div>
+
+      <StickyResultBar
+        label="Décennale / an"
+        value={`${fmtEuro(results.min)} – ${fmtEuro(results.max)}`}
+        ctaHref={ctaSignupHref}
+      />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import { useMemo, useState, type ReactNode } from 'react';
 import { AlertTriangle, ArrowRight, HelpCircle } from 'lucide-react';
 import { APP_BASE } from '@/lib/urls';
 import { Card, CardContent, CardHeader, CardTitle, Input, Label, Button } from './ui';
+import { StickyResultBar } from './StickyResultBar';
 
 interface Inputs {
   tauxHoraire: number;
@@ -98,7 +99,7 @@ export function IntemperiesCibtpCalculator() {
   }, [results.indemniteTotale]);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-5">
+    <div className="grid gap-6 pb-20 lg:grid-cols-5 lg:pb-0">
       <div className="space-y-6 lg:col-span-3">
         <Card>
           <CardHeader>
@@ -277,6 +278,12 @@ export function IntemperiesCibtpCalculator() {
           </Card>
         </div>
       </div>
+
+      <StickyResultBar
+        label="Indemnité CIBTP totale"
+        value={fmtEuro(results.indemniteTotale)}
+        ctaHref={ctaSignupHref}
+      />
     </div>
   );
 }

@@ -2,6 +2,15 @@ import { useMemo, useState } from 'react';
 import { ArrowRight, Check, CheckCircle, Clipboard, FileSignature, Info, TrendingDown } from 'lucide-react';
 import { APP_BASE } from '@/lib/urls';
 import { Card, CardContent, CardHeader, CardTitle, Button, Label } from './ui';
+import { StickyResultBar } from './StickyResultBar';
+
+const VERDICT_SHORT_LABEL: Record<Verdict, string> = {
+  'tva-20': 'TVA 20 %',
+  'tva-10': 'TVA 10 %',
+  'tva-5-5': 'TVA 5,5 %',
+  autoliquidation: 'Autoliquidation',
+  franchise: 'Franchise en base',
+};
 
 type Q1 = 'a' | 'b' | 'c' | 'd';
 type Q2 = 'a' | 'b' | 'c' | 'd' | 'e';
@@ -120,7 +129,7 @@ export function MentionTvaGenerator() {
   };
 
   return (
-    <div className="grid gap-6 lg:grid-cols-5">
+    <div className="grid gap-6 pb-20 lg:grid-cols-5 lg:pb-0">
       <div className="space-y-6 lg:col-span-3">
         <Card>
           <CardHeader>
@@ -267,6 +276,12 @@ export function MentionTvaGenerator() {
           </Card>
         </div>
       </div>
+
+      <StickyResultBar
+        label="Mention TVA"
+        value={verdict ? VERDICT_SHORT_LABEL[verdict] : 'À déterminer'}
+        ctaHref={ctaSignupHref}
+      />
     </div>
   );
 }

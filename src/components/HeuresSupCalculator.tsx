@@ -2,6 +2,8 @@ import { useMemo, useState, type ReactNode } from 'react';
 import { ArrowRight, HelpCircle } from 'lucide-react';
 import { APP_BASE } from '@/lib/urls';
 import { Card, CardContent, CardHeader, CardTitle, Input, Label, Button } from './ui';
+import { StickyResultBar } from './StickyResultBar';
+import { computeHeuresSup } from '@/lib/heures-sup-math';
 
 type Convention = 'ouvrier' | 'etam';
 type ZoneTrajet = '1A' | '1B' | '2' | '3' | '4' | '5';
@@ -26,9 +28,8 @@ const DEFAULTS: Inputs = {
   grandDeplacement: false,
 };
 
-// Barème indicatif 2026 — convention collective ouvriers BTP / URSSAF
-const PANIER_PAR_JOUR = 10.90;
-const FORFAIT_GRAND_DEPLACEMENT = 85;
+// Barème indicatif 2026 — convention collective ouvriers BTP / URSSAF.
+// La formule (panier 10,30 €, carence, split 25/50) vit dans heures-sup-math.
 
 const ZONE_INDEMNITES: Record<ZoneTrajet, number> = {
   '1A': 1.33,
@@ -76,50 +77,17 @@ export function HeuresSupCalculator() {
 
   const niveauxOptions = inputs.convention === 'ouvrier' ? NIVEAUX_OUVRIER : NIVEAUX_ETAM;
 
-  const results = useMemo(() => {
-    const heuresBase = Math.min(inputs.heuresSemaine, 35);
-    const heures25 = Math.max(0, Math.min(inputs.heuresSemaine - 35, 8));
-    const heures50 = Math.max(0, inputs.heuresSemaine - 43);
-
-    const salaireBase = heuresBase * inputs.tauxHoraire;
-    const majoration25 = heures25 * inputs.tauxHoraire * 1.25;
-    const majoration50 = heures50 * inputs.tauxHoraire * 1.50;
-
-    const panierSemaine = PANIER_PAR_JOUR * inputs.joursChantier;
-    const panierMois = panierSemaine * 4.33;
-
-    const indemniteJour = ZONE_INDEMNITES[inputs.zoneTrajet];
-    const indemniteSemaine = indemniteJour * inputs.joursChantier;
-    const indemniteMois = indemniteSemaine * 4.33;
-
-    const grandDeplSemaine = inputs.grandDeplacement
-      ? FORFAIT_GRAND_DEPLACEMENT * inputs.joursChantier
-      : 0;
-    const grandDeplMois = grandDeplSemaine * 4.33;
-
-    const totalSemaine =
-      salaireBase + majoration25 + majoration50 + panierSemaine + indemniteSemaine + grandDeplSemaine;
-    const totalMois = totalSemaine * 4.33;
-
-    const extrasMois = panierMois + indemniteMois + grandDeplMois + (majoration25 + majoration50) * 4.33;
-
-    return {
-      salaireBase,
-      majoration25,
-      majoration50,
-      heures25,
-      heures50,
-      panierSemaine,
-      panierMois,
-      indemniteSemaine,
-      indemniteMois,
-      grandDeplSemaine,
-      grandDeplMois,
-      totalSemaine,
-      totalMois,
-      extrasMois,
-    };
-  }, [inputs]);
+  const results = useMemo(
+    () =>
+      computeHeuresSup({
+        heuresSemaine: inputs.heuresSemaine,
+        tauxHoraire: inputs.tauxHoraire,
+        joursChantier: inputs.joursChantier,
+        indemniteTrajetJour: ZONE_INDEMNITES[inputs.zoneTrajet],
+        grandDeplacement: inputs.grandDeplacement,
+      }),
+    [inputs],
+  );
 
   const ctaSignupHref = useMemo(() => {
     const params = new URLSearchParams({ source: 'calculateur-heures-supplementaires-btp' });
@@ -129,7 +97,7 @@ export function HeuresSupCalculator() {
   }, [inputs.tauxHoraire, results.extrasMois]);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-5">
+    <div className="grid gap-6 pb-20 lg:grid-cols-5 lg:pb-0">
       <div className="space-y-6 lg:col-span-3">
         <Card>
           <CardHeader>
@@ -283,6 +251,12 @@ export function HeuresSupCalculator() {
           </Card>
         </div>
       </div>
+
+      <StickyResultBar
+        label="Total brut semaine"
+        value={fmtEuro(results.totalSemaine)}
+        ctaHref={ctaSignupHref}
+      />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { AlertTriangle, ArrowRight, CheckCircle, HelpCircle, TrendingDown } from 'lucide-react';
 import { APP_BASE } from '@/lib/urls';
 import { Card, CardContent, CardHeader, CardTitle, Input, Label, Button } from './ui';
+import { StickyResultBar } from './StickyResultBar';
 
 interface Inputs {
   marcheInitialHT: number;
@@ -138,7 +139,7 @@ export function DGDCalculator() {
   }, [inputs.marcheInitialHT, results.solde]);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-5">
+    <div className="grid gap-6 pb-20 lg:grid-cols-5 lg:pb-0">
       <div className="space-y-6 lg:col-span-3">
         <Card>
           <CardHeader>
@@ -350,6 +351,12 @@ export function DGDCalculator() {
           </Card>
         </div>
       </div>
+
+      <StickyResultBar
+        label="Solde DGD TTC"
+        value={fmtEuroSigned(results.solde)}
+        ctaHref={ctaSignupHref}
+      />
     </div>
   );
 }

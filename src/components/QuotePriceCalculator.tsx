@@ -5,6 +5,7 @@ import { computeVerdict, type VerdictKind } from '@/lib/pricing';
 import { APP_BASE } from '@/lib/urls';
 import { Card, CardContent, CardHeader, CardTitle, Input, Label, Button } from './ui';
 import { ResultVerdict } from './ResultVerdict';
+import { StickyResultBar } from './StickyResultBar';
 
 interface Inputs {
   tauxHoraire: number;
@@ -13,6 +14,7 @@ interface Inputs {
   coutMateriaux: number;
   coefficientMateriaux: number;
   sousTraitance: number;
+  coefficientSousTraitance: number;
   fraisDivers: number;
 }
 
@@ -23,6 +25,7 @@ const DEFAULTS: Inputs = {
   coutMateriaux: 0,
   coefficientMateriaux: 1.3,
   sousTraitance: 0,
+  coefficientSousTraitance: 1.0,
   fraisDivers: 0,
 };
 
@@ -58,8 +61,11 @@ export function QuotePriceCalculator() {
   const results = useMemo(() => {
     const labourRevenue = inputs.heuresMO * inputs.tauxHoraire;
     const materiauxFactures = inputs.coutMateriaux * inputs.coefficientMateriaux;
+    // Sous-traitance refacturée : coefficient 1,0 = pass-through (comportement
+    // par défaut, marge nulle). > 1,0 applique une marge de coordination.
+    const sousTraitanceFacturee = inputs.sousTraitance * inputs.coefficientSousTraitance;
     const prixEstime =
-      labourRevenue + materiauxFactures + inputs.sousTraitance + inputs.fraisDivers;
+      labourRevenue + materiauxFactures + sousTraitanceFacturee + inputs.fraisDivers;
 
     const coutHoraire =
       inputs.margeCible >= 100 || inputs.margeCible < 0
@@ -87,7 +93,7 @@ export function QuotePriceCalculator() {
   }, [inputs.tauxHoraire, inputs.margeCible, results.prixEstime]);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-5">
+    <div className="grid gap-6 pb-20 lg:grid-cols-5 lg:pb-0">
       <div className="space-y-6 lg:col-span-3">
         <Card>
           <CardHeader>
@@ -144,7 +150,8 @@ export function QuotePriceCalculator() {
             <Field label="Heures de main d'œuvre" suffix="h" value={inputs.heuresMO} onChange={(v) => update('heuresMO', v)} step="0.5" />
             <Field label="Coût matériaux (achat HT)" suffix="€" value={inputs.coutMateriaux} onChange={(v) => update('coutMateriaux', v)} />
             <Field label="Coefficient de vente matériaux" hint="1,30 ≈ 23 % de marge nette" suffix="" value={inputs.coefficientMateriaux} onChange={(v) => update('coefficientMateriaux', v)} step="0.05" />
-            <Field label="Sous-traitance" hint="Refacturée au coût réel" suffix="€" value={inputs.sousTraitance} onChange={(v) => update('sousTraitance', v)} />
+            <Field label="Sous-traitance (coût HT)" hint="Montant facturé par votre sous-traitant" suffix="€" value={inputs.sousTraitance} onChange={(v) => update('sousTraitance', v)} />
+            <Field label="Coefficient sous-traitance" hint="1,00 = refacturé au coût. 1,10–1,15 ajoute une marge de coordination." suffix="" value={inputs.coefficientSousTraitance} onChange={(v) => update('coefficientSousTraitance', v)} step="0.05" />
             <Field label="Frais divers chantier" hint="Location, déchèterie, divers" suffix="€" value={inputs.fraisDivers} onChange={(v) => update('fraisDivers', v)} />
           </CardContent>
         </Card>
@@ -189,6 +196,12 @@ export function QuotePriceCalculator() {
           </Card>
         </div>
       </div>
+
+      <StickyResultBar
+        label="Prix HT recommandé"
+        value={fmtEuro(results.prixEstime)}
+        ctaHref={ctaSignupHref}
+      />
     </div>
   );
 }

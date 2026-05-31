@@ -2,8 +2,14 @@ import { useMemo, useState, type ReactNode } from 'react';
 import { ArrowRight, HelpCircle, Info } from 'lucide-react';
 import { APP_BASE } from '@/lib/urls';
 import { Card, CardContent, CardHeader, CardTitle, Input, Label, Button } from './ui';
-
-type Contrat = 'ouvrier' | 'etam' | 'cadre';
+import { StickyResultBar } from './StickyResultBar';
+import {
+  computePrimeAnciennete,
+  getPaliers,
+  nextPalier,
+  CHARGES_PATRONALES_BTP,
+  type Contrat,
+} from '@/lib/prime-anciennete-math';
 
 interface Inputs {
   salaireBrut: number;
@@ -17,33 +23,6 @@ const DEFAULTS: Inputs = {
   contrat: 'ouvrier',
 };
 
-// Barème canonique — CCN ouvriers du bâtiment (article 6.2, accord 8 oct. 1990
-// et accords régionaux types). Paliers de 3 ans, taux croissant de 3 % à 15 %.
-const PALIERS_OUVRIER: { seuil: number; taux: number }[] = [
-  { seuil: 15, taux: 0.15 },
-  { seuil: 12, taux: 0.12 },
-  { seuil: 9, taux: 0.09 },
-  { seuil: 6, taux: 0.06 },
-  { seuil: 3, taux: 0.03 },
-];
-
-// Barème CCN ETAM bâtiment (article 14) — paliers de 3 ans, plafond à 5 %.
-const PALIERS_ETAM: { seuil: number; taux: number }[] = [
-  { seuil: 15, taux: 0.05 },
-  { seuil: 12, taux: 0.04 },
-  { seuil: 9, taux: 0.03 },
-  { seuil: 6, taux: 0.02 },
-  { seuil: 3, taux: 0.01 },
-];
-
-function getPaliers(contrat: Contrat): { seuil: number; taux: number }[] {
-  if (contrat === 'ouvrier') return PALIERS_OUVRIER;
-  if (contrat === 'etam') return PALIERS_ETAM;
-  return [];
-}
-
-const CHARGES_PATRONALES_BTP = 0.42;
-
 const NUMBER_FMT = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 });
 const RATE_FMT = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 2 });
 
@@ -51,25 +30,6 @@ function fmtEuro(n: number, decimals = 0): string {
   if (!Number.isFinite(n) || n <= 0) return '— €';
   const fmt = decimals > 0 ? RATE_FMT : NUMBER_FMT;
   return `${fmt.format(decimals > 0 ? n : Math.round(n))} €`;
-}
-
-function getTaux(annees: number, paliers: { seuil: number; taux: number }[]): number {
-  for (const p of paliers) {
-    if (annees >= p.seuil) return p.taux;
-  }
-  return 0;
-}
-
-function nextPalier(
-  annees: number,
-  paliers: { seuil: number; taux: number }[],
-): { seuil: number; taux: number } | null {
-  // Find the next higher palier strictly above the current one.
-  const sorted = [...paliers].sort((a, b) => a.seuil - b.seuil);
-  for (const p of sorted) {
-    if (annees < p.seuil) return p;
-  }
-  return null;
 }
 
 export function PrimeAncienneteCalculator() {
@@ -85,29 +45,16 @@ export function PrimeAncienneteCalculator() {
   };
 
   const results = useMemo(() => {
-    const applicable = inputs.contrat === 'ouvrier' || inputs.contrat === 'etam';
-    const paliers = getPaliers(inputs.contrat);
-    const annees = Math.max(0, Math.floor(inputs.anciennete));
+    const core = computePrimeAnciennete(inputs.contrat, inputs.salaireBrut, inputs.anciennete);
     const brut = Math.max(0, inputs.salaireBrut);
+    const coutEmployeur = core.primeAnnuelle * (1 + CHARGES_PATRONALES_BTP);
 
-    const taux = applicable ? getTaux(annees, paliers) : 0;
-    const primeMensuelle = brut * taux;
-    const primeAnnuelle = primeMensuelle * 12;
-    const coutEmployeur = primeAnnuelle * (1 + CHARGES_PATRONALES_BTP);
-
-    const prochain = applicable ? nextPalier(annees, paliers) : null;
+    const prochain = core.applicable
+      ? nextPalier(core.annees, getPaliers(inputs.contrat))
+      : null;
     const primeProchainPalier = prochain ? brut * prochain.taux : 0;
 
-    return {
-      applicable,
-      annees,
-      taux,
-      primeMensuelle,
-      primeAnnuelle,
-      coutEmployeur,
-      prochain,
-      primeProchainPalier,
-    };
+    return { ...core, coutEmployeur, prochain, primeProchainPalier };
   }, [inputs]);
 
   const ctaSignupHref = useMemo(() => {
@@ -119,7 +66,7 @@ export function PrimeAncienneteCalculator() {
   }, [results.primeMensuelle]);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-5">
+    <div className="grid gap-6 pb-20 lg:grid-cols-5 lg:pb-0">
       <div className="space-y-6 lg:col-span-3">
         <Card>
           <CardHeader>
@@ -325,6 +272,12 @@ export function PrimeAncienneteCalculator() {
           </Card>
         </div>
       </div>
+
+      <StickyResultBar
+        label="Prime d'ancienneté mensuelle"
+        value={results.applicable ? fmtEuro(results.primeMensuelle, 2) : 'Non applicable'}
+        ctaHref={ctaSignupHref}
+      />
     </div>
   );
 }

@@ -9,7 +9,7 @@ export const heuresSupFAQ: FAQItem[] = [
   {
     question: "Quel est le montant du panier BTP 2026 ?",
     answer:
-      "Le panier repas indicatif 2026 retenu dans la convention collective ouvriers du bâtiment et exonéré par l'URSSAF s'élève à 10,90 € par journée travaillée hors du siège de l'entreprise. Il est versé quel que soit le mode de prise en charge du repas (cantine, restaurant, gamelle) à condition que le salarié déjeune effectivement hors du siège. Le montant exact peut varier d'une région à l'autre ou en fonction des accords d'entreprise — vérifiez le barème applicable à votre convention collective départementale.",
+      "Le panier de chantier exonéré par l'URSSAF en 2026 s'élève à 10,30 € par journée travaillée hors du siège de l'entreprise (plafond d'exonération de cotisations). Il est versé quel que soit le mode de prise en charge du repas (cantine, restaurant, gamelle) à condition que le salarié déjeune effectivement hors du siège. Les accords d'entreprise ou conventions départementales peuvent prévoir un panier conventionnel plus élevé, mais la fraction au-delà de 10,30 € est alors soumise à cotisations — vérifiez le barème applicable à votre convention collective départementale.",
   },
   {
     question: "Comment fonctionne l’indemnité de trajet dans le BTP ?",

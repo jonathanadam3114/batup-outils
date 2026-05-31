@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { ArrowRight, Check, Minus } from 'lucide-react';
 import { APP_BASE } from '@/lib/urls';
 import { Card, CardContent, CardHeader, CardTitle, Label, Button } from './ui';
+import { StickyResultBar } from './StickyResultBar';
 
 type CAOption = 'lt30' | '30_80' | '80_200' | 'gt200';
 type AssociesOption = 'seul' | '2_3' | '4plus';
@@ -303,7 +304,7 @@ export function StatutJuridiqueComparator() {
   }, [top, allAnswered]);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 pb-20 lg:pb-0">
       <div className="grid gap-6 lg:grid-cols-5">
         <div className="space-y-6 lg:col-span-3">
           <Card>
@@ -486,6 +487,12 @@ export function StatutJuridiqueComparator() {
           </p>
         </CardContent>
       </Card>
+
+      <StickyResultBar
+        label="Statut recommandé"
+        value={allAnswered && top ? STATUT_LABELS[top.statut] : 'À déterminer'}
+        ctaHref={ctaSignupHref}
+      />
     </div>
   );
 }

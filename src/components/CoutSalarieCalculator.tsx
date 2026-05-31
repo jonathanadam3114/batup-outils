@@ -2,6 +2,7 @@ import { useMemo, useState, type ReactNode } from 'react';
 import { ArrowRight, HelpCircle } from 'lucide-react';
 import { APP_BASE } from '@/lib/urls';
 import { Card, CardContent, CardHeader, CardTitle, Input, Label, Button } from './ui';
+import { StickyResultBar } from './StickyResultBar';
 
 type Convention = 'ouvrier' | 'etam' | 'cadre';
 type Region = 'idf' | 'autres';
@@ -100,7 +101,7 @@ export function CoutSalarieCalculator() {
   }, [results.coutHoraireCharge, inputs.salaireBrut]);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-5">
+    <div className="grid gap-6 pb-20 lg:grid-cols-5 lg:pb-0">
       <div className="space-y-6 lg:col-span-3">
         <Card>
           <CardHeader>
@@ -221,6 +222,12 @@ export function CoutSalarieCalculator() {
           </Card>
         </div>
       </div>
+
+      <StickyResultBar
+        label="Coût total employeur"
+        value={fmtEuro(results.coutTotal)}
+        ctaHref={ctaSignupHref}
+      />
     </div>
   );
 }

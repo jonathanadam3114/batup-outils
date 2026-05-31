@@ -29,8 +29,8 @@ export const heuresSupCopy = {
         body: "Au-delà de 35 heures hebdomadaires, les 8 premières heures sont majorées de 25 %. Au-delà de 43 heures, la majoration passe à 50 %. La majoration s'applique sur le taux horaire brut de base, hors primes et indemnités. Les heures de trajet, de chargement ou d'attente sur chantier sont du temps de travail effectif et entrent dans le décompte.",
       },
       {
-        heading: '2. Panier repas : 10,90 € par jour de chantier hors siège',
-        body: "Le panier est versé pour chaque journée où le salarié déjeune hors du siège de l'entreprise (chantier, déplacement). Le montant indicatif 2026 retenu ici est de 10,90 € par jour, conforme au barème URSSAF d'exonération. Il est exonéré de cotisations sociales dans cette limite et non soumis à l'impôt sur le revenu.",
+        heading: '2. Panier repas : 10,30 € par jour de chantier hors siège',
+        body: "Le panier est versé pour chaque journée où le salarié déjeune hors du siège de l'entreprise (chantier, déplacement). Le montant indicatif 2026 retenu ici est de 10,30 € par jour, conforme au plafond URSSAF d'exonération du panier de chantier. Il est exonéré de cotisations sociales dans cette limite et non soumis à l'impôt sur le revenu.",
       },
       {
         heading: "3. Indemnité de trajet : par zone, du siège au chantier",

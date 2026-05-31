@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { ArrowRight, CheckCircle, AlertTriangle, TrendingDown } from 'lucide-react';
 import { APP_BASE } from '@/lib/urls';
 import { Card, CardContent, CardHeader, CardTitle, Input, Label, Button } from './ui';
+import { StickyResultBar } from './StickyResultBar';
 
 interface Inputs {
   coutCertif: number;
@@ -123,7 +124,7 @@ export function RoiRgeCalculator() {
   const VerdictIcon = verdictCfg.Icon;
 
   return (
-    <div className="grid gap-6 lg:grid-cols-5">
+    <div className="grid gap-6 pb-20 lg:grid-cols-5 lg:pb-0">
       <div className="space-y-6 lg:col-span-3">
         <Card>
           <CardHeader>
@@ -389,6 +390,12 @@ export function RoiRgeCalculator() {
           </Card>
         </div>
       </div>
+
+      <StickyResultBar
+        label="Marge supplémentaire / an"
+        value={fmtEuro(results.margeSuppAnnuelle)}
+        ctaHref={ctaSignupHref}
+      />
     </div>
   );
 }

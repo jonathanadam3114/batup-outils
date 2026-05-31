@@ -5,6 +5,7 @@ import { PublicNav } from './PublicNav';
 import { PublicFooter } from './PublicFooter';
 import { MethodologySection } from './MethodologySection';
 import { FAQAccordion, type FAQItem } from './FAQAccordion';
+import { RelatedTools } from './RelatedTools';
 import { SignupCTABanner } from './SignupCTABanner';
 
 interface MethodologyBlock {
@@ -105,6 +106,7 @@ export function PublicToolLayout({
 
         <MethodologySection {...methodology} />
         <FAQAccordion items={faqItems} />
+        <RelatedTools />
         <SignupCTABanner
           title={ctaBannerTitle}
           subtitle={ctaBannerSubtitle}

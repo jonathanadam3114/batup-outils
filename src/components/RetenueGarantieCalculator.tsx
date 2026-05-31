@@ -2,6 +2,8 @@ import { useMemo, useState } from 'react';
 import { ArrowRight, CalendarDays, HelpCircle, ShieldCheck } from 'lucide-react';
 import { APP_BASE } from '@/lib/urls';
 import { Card, CardContent, CardHeader, CardTitle, Input, Label, Button } from './ui';
+import { StickyResultBar } from './StickyResultBar';
+import { montantTTC, retenueGarantieFromTTC } from '@/lib/retenue-garantie-math';
 
 interface Inputs {
   montantHT: number;
@@ -64,8 +66,8 @@ export function RetenueGarantieCalculator() {
   };
 
   const results = useMemo(() => {
-    const montantTTC = inputs.montantHT * (1 + inputs.tvaPct / 100);
-    const retenueTheorique = montantTTC * 0.05;
+    const ttc = montantTTC(inputs.montantHT, inputs.tvaPct);
+    const retenueTheorique = retenueGarantieFromTTC(ttc);
     const retenueEffective = inputs.cautionBancaire ? 0 : retenueTheorique;
 
     const dateReception = inputs.dateReception ? new Date(inputs.dateReception) : null;
@@ -76,7 +78,7 @@ export function RetenueGarantieCalculator() {
     const aujourdHui = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 
     return {
-      montantTTC,
+      montantTTC: ttc,
       retenueTheorique,
       retenueEffective,
       dateReception,
@@ -92,7 +94,7 @@ export function RetenueGarantieCalculator() {
   }, [inputs.montantHT]);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-5">
+    <div className="grid gap-6 pb-20 lg:grid-cols-5 lg:pb-0">
       <div className="space-y-6 lg:col-span-3">
         <Card>
           <CardHeader>
@@ -234,6 +236,12 @@ export function RetenueGarantieCalculator() {
           </Card>
         </div>
       </div>
+
+      <StickyResultBar
+        label="Retenue 5 % du TTC"
+        value={fmtEuro(results.retenueEffective)}
+        ctaHref={ctaSignupHref}
+      />
     </div>
   );
 }

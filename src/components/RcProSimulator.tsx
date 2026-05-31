@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { ArrowRight, AlertTriangle, TrendingUp, TrendingDown, PiggyBank } from 'lucide-react';
 import { APP_BASE } from '@/lib/urls';
 import { Card, CardContent, CardHeader, CardTitle, Input, Label, Button } from './ui';
+import { StickyResultBar } from './StickyResultBar';
 
 type MetierKey =
   | 'electricien'
@@ -225,7 +226,7 @@ export function RcProSimulator() {
   }, [inputs.metier]);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-5">
+    <div className="grid gap-6 pb-20 lg:grid-cols-5 lg:pb-0">
       <div className="space-y-6 lg:col-span-3">
         <Card>
           <CardHeader>
@@ -424,6 +425,12 @@ export function RcProSimulator() {
           </Card>
         </div>
       </div>
+
+      <StickyResultBar
+        label="Prime RC Pro / an"
+        value={`${fmtEuro(results.min)} – ${fmtEuro(results.max)}`}
+        ctaHref={ctaSignupHref}
+      />
     </div>
   );
 }

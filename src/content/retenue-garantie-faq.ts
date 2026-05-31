@@ -4,7 +4,7 @@ export const retenueGarantieFAQ: FAQItem[] = [
   {
     question: 'Qu\'est-ce que la retenue de garantie de 5 % dans le BTP ?',
     answer:
-      "C'est une somme que le client (maître d'ouvrage) est autorisé à retenir sur chaque acompte ou paiement, dans la limite de 5 % du montant TTC, pour garantir la bonne exécution des travaux pendant l'année qui suit la réception. Elle est encadrée par la Loi n° 71-584 du 16 juillet 1971 modifiée. La retenue s'applique aux marchés privés au-delà de 7 600 € HT et à tous les marchés publics. Au-dessus de 5 %, la clause est nulle de plein droit et l'entrepreneur peut exiger le versement immédiat.",
+      "C'est une somme que le client (maître d'ouvrage) est autorisé à retenir sur chaque acompte ou paiement, dans la limite de 5 % du montant TTC, pour garantir la bonne exécution des travaux pendant l'année qui suit la réception. Elle est encadrée par la Loi n° 71-584 du 16 juillet 1971 modifiée, qui s'applique à tous les marchés de travaux privés sans seuil de montant minimal. Au-dessus de 5 %, la clause est nulle de plein droit et l'entrepreneur peut exiger le versement immédiat.",
   },
   {
     question: 'La retenue se calcule sur le HT ou sur le TTC ?',
@@ -29,7 +29,7 @@ export const retenueGarantieFAQ: FAQItem[] = [
   {
     question: 'Quels sont les marchés concernés par la retenue de 5 % ?',
     answer:
-      "Tous les marchés de travaux privés au-delà de 7 600 € HT, ainsi que tous les marchés publics quel que soit leur montant. Sont concernés : les marchés de construction neuve, de rénovation, d'extension, d'agencement, et plus largement tous les marchés de travaux immobiliers. Ne sont pas concernés : les contrats de fourniture, de prestation intellectuelle, de maintenance courante, ni les marchés privés inférieurs à 7 600 € HT. Pour les marchés inférieurs au seuil, aucune retenue ne peut être imposée sans accord exprès dans le contrat.",
+      "Tous les marchés de travaux privés, quel que soit leur montant : la Loi 71-584 ne fixe aucun seuil minimal. Sont concernés les marchés de construction neuve, de rénovation, d'extension, d'agencement, et plus largement tous les marchés de travaux immobiliers. Ne sont pas concernés les contrats de pure fourniture, de prestation intellectuelle ou de maintenance courante (qui ne sont pas des marchés de travaux). La retenue reste un plafond facultatif : le client ne peut l'imposer que si le contrat la prévoit, et jamais au-delà de 5 % du TTC.",
   },
   {
     question: 'Le client peut-il refuser de libérer la retenue après 1 an ?',

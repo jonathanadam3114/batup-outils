@@ -22,7 +22,7 @@ export const retenueGarantieCopy = {
   methodology: {
     title: 'Comment fonctionne la retenue de garantie en France',
     intro:
-      "Cadre légal : Loi n° 71-584 du 16 juillet 1971 modifiée. Elle s'applique à tous les marchés de travaux privés au-dessus de 7 600 € HT et à tous les marchés publics. Voici les règles que le calculateur applique.",
+      "Cadre légal : Loi n° 71-584 du 16 juillet 1971 modifiée. Elle s'applique à tous les marchés de travaux privés, sans seuil de montant minimal. Voici les règles que le calculateur applique.",
     blocks: [
       {
         heading: '1. La retenue est de 5 % du montant TTC',

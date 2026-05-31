@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { ArrowRight, HelpCircle } from 'lucide-react';
 import { APP_BASE } from '@/lib/urls';
 import { Card, CardContent, CardHeader, CardTitle, Input, Label, Button } from './ui';
+import { StickyResultBar } from './StickyResultBar';
 
 type Statut = 'micro' | 'ei_reel' | 'eurl' | 'sarl' | 'sas';
 
@@ -212,7 +213,7 @@ export function ChargesSocialesCalculator() {
     inputs.statut === 'sas';
 
   return (
-    <div className="grid gap-6 lg:grid-cols-5">
+    <div className="grid gap-6 pb-20 lg:grid-cols-5 lg:pb-0">
       <div className="space-y-6 lg:col-span-3">
         <Card>
           <CardHeader>
@@ -380,6 +381,12 @@ export function ChargesSocialesCalculator() {
           </Card>
         </div>
       </div>
+
+      <StickyResultBar
+        label="Cotisations totales"
+        value={fmtEuro(results.totalCotisations + results.isAmount)}
+        ctaHref={ctaSignupHref}
+      />
     </div>
   );
 }

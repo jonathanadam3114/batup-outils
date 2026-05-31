@@ -4,6 +4,7 @@ import { ArrowRight, HelpCircle } from 'lucide-react';
 import { calculateBillableHourlyRate } from '@/lib/pricing';
 import { APP_BASE } from '@/lib/urls';
 import { Card, CardContent, CardHeader, CardTitle, Input, Label, Button } from './ui';
+import { StickyResultBar } from './StickyResultBar';
 
 interface Inputs {
   salaires: number;
@@ -82,7 +83,7 @@ export function HourlyRateCalculator() {
   }, [results.tauxFacturer, inputs.margeCible]);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-5">
+    <div className="grid gap-6 pb-20 lg:grid-cols-5 lg:pb-0">
       <div className="space-y-6 lg:col-span-3">
         <Card>
           <CardHeader>
@@ -164,6 +165,12 @@ export function HourlyRateCalculator() {
           </Card>
         </div>
       </div>
+
+      <StickyResultBar
+        label="Taux à facturer"
+        value={fmtRate(results.tauxFacturer)}
+        ctaHref={ctaSignupHref}
+      />
     </div>
   );
 }

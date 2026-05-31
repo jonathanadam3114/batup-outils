@@ -2,6 +2,8 @@ import { useMemo, useState } from 'react';
 import { AlertTriangle, ArrowRight, HelpCircle } from 'lucide-react';
 import { APP_BASE } from '@/lib/urls';
 import { Card, CardContent, CardHeader, CardTitle, Input, Label, Button } from './ui';
+import { StickyResultBar } from './StickyResultBar';
+import { retenueGarantieFromTTC } from '@/lib/retenue-garantie-math';
 
 interface Inputs {
   montantMarcheHT: number;
@@ -52,7 +54,9 @@ export function SituationTravauxCalculator() {
     const situationBruteHT = Math.max(0, travauxRealisesHT - inputs.dejaFactureHT);
     const tvaSituationBrute = situationBruteHT * (inputs.tvaPct / 100);
     const situationBruteTTC = situationBruteHT + tvaSituationBrute;
-    const retenueGarantie = inputs.retenueActive ? situationBruteTTC * 0.05 : 0;
+    const retenueGarantie = inputs.retenueActive
+      ? retenueGarantieFromTTC(situationBruteTTC)
+      : 0;
     const situationTTC = situationBruteTTC - retenueGarantie;
     const netAPercevoir = situationTTC - inputs.acomptesEncaissesHT;
     const resteAFacturerHT = Math.max(0, inputs.montantMarcheHT - travauxRealisesHT);
@@ -82,7 +86,7 @@ export function SituationTravauxCalculator() {
   }, [inputs.montantMarcheHT, inputs.avancementPct]);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-5">
+    <div className="grid gap-6 pb-20 lg:grid-cols-5 lg:pb-0">
       <div className="space-y-6 lg:col-span-3">
         <Card>
           <CardHeader>
@@ -279,6 +283,12 @@ export function SituationTravauxCalculator() {
           </Card>
         </div>
       </div>
+
+      <StickyResultBar
+        label="Situation à facturer TTC"
+        value={fmtEuro(results.situationTTC)}
+        ctaHref={ctaSignupHref}
+      />
     </div>
   );
 }

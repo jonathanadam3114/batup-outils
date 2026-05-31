@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { AlertCircle, ArrowRight, CheckCircle, XCircle } from 'lucide-react';
 import { APP_BASE } from '@/lib/urls';
 import { Card, CardContent, CardHeader, CardTitle, Button } from './ui';
+import { StickyResultBar } from './StickyResultBar';
 
 type DocType = 'facture' | 'devis';
 
@@ -398,7 +399,7 @@ export function MentionsObligatoiresChecker() {
   }, [docType, missing.length]);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-5">
+    <div className="grid gap-6 pb-20 lg:grid-cols-5 lg:pb-0">
       <div className="space-y-6 lg:col-span-3">
         <Card>
           <CardHeader>
@@ -530,6 +531,16 @@ export function MentionsObligatoiresChecker() {
           </Card>
         </div>
       </div>
+
+      <StickyResultBar
+        label={`Conformité ${docType}`}
+        value={
+          isCompliant
+            ? 'Conforme'
+            : `${missing.length} mention${missing.length > 1 ? 's' : ''} manquante${missing.length > 1 ? 's' : ''}`
+        }
+        ctaHref={ctaSignupHref}
+      />
     </div>
   );
 }

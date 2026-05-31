@@ -33,8 +33,8 @@ export const prixChantierCopy = {
         body: "Multipliez votre prix d'achat HT par votre coefficient de vente (1,30 par défaut pour environ 23 % de marge nette). Le coefficient sert à couvrir le temps passé à approvisionner, la trésorerie immobilisée et les éventuelles casses ou retours.",
       },
       {
-        heading: '3. Sous-traitance et frais divers en pass-through',
-        body: "La sous-traitance et les frais divers (location, déchèterie, échafaudage) sont en général refacturés au coût réel, sans marge. Si vous voulez les marger, intégrez-les dans le coût de la main d'œuvre ou des matériaux.",
+        heading: '3. Sous-traitance et frais divers',
+        body: "Par défaut, la sous-traitance et les frais divers (location, déchèterie, échafaudage) sont refacturés au coût réel : le coefficient sous-traitance est à 1,00 (pass-through). Comme la sous-traitance vous coûte aussi en coordination, contrôle qualité et trésorerie, vous pouvez monter ce coefficient à 1,10–1,15 pour appliquer une marge usuelle de 10 à 15 %.",
       },
       {
         heading: '4. Verdict de rentabilité',
