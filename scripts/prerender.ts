@@ -221,7 +221,31 @@ function main(): void {
     count++;
   }
 
-  console.log(`[prerender] wrote ${count} static pages (${SEO_ROUTES.length} tools + 1 home)`);
+  // 404 fallback (dist/404.html). Cloudflare Pages serves this for any path
+  // that doesn't match a prerendered file — the SPA boots with an empty #root
+  // and wouter renders <NotFound>. This REPLACES the old `_redirects`
+  // `/* /index.html 200` catch-all, which incorrectly overrode every
+  // per-route prerendered file with the generic root shell.
+  {
+    let html = setTitle(
+      template,
+      'Page introuvable — Outils BTP gratuits | Batup'
+    );
+    html = injectHead(
+      html,
+      headMeta({
+        title: 'Page introuvable | Batup',
+        description: 'Cette page n’existe pas. Découvrez les outils BTP gratuits de Batup.',
+        url: SITE + '/404',
+      })
+    );
+    html = injectRoot(html, `<h1>Page introuvable</h1>${navHub()}`);
+    fs.writeFileSync(path.join(DIST, '404.html'), html, 'utf8');
+  }
+
+  console.log(
+    `[prerender] wrote ${count} static pages (${SEO_ROUTES.length} tools + 1 home) + 404.html`
+  );
 }
 
 main();

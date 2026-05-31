@@ -1,3 +1,0 @@
-# Cloudflare Pages SPA fallback — every unknown path returns index.html with 200
-# so the client-side router (Wouter) can handle it.
-/*  /index.html  200
