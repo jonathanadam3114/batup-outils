@@ -24,7 +24,7 @@ export function FAQAccordion({ title = 'Questions fréquentes', items }: FAQAcco
 
   return (
     <section
-      className="relative z-0 -mt-[60px] overflow-hidden pt-32 pb-32 lg:pt-40 lg:pb-40"
+      className="relative z-0 -mt-[60px] overflow-hidden pt-20 pb-32 lg:pt-24 lg:pb-40"
       style={{
         backgroundColor: '#F5F6F8',
         borderTopLeftRadius: 60,
