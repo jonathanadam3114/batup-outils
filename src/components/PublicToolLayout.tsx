@@ -96,6 +96,10 @@ export function PublicToolLayout({
         {/* Hero aere : plus d'espace nav→H1, H1→sous-titre, sous-titre→outil */}
         <section className="bg-gradient-to-b from-[#f5f5ff] via-white to-white pt-16 pb-14 sm:pt-20 sm:pb-16 lg:pt-24 lg:pb-20">
           <div className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
+            {/* Pastille "RESSOURCE GRATUITE" coherente avec la pastille FAQ */}
+            <span className="mb-5 inline-block rounded-full bg-brand-600/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-brand-600 sm:mb-6 sm:text-sm">
+              Ressource gratuite
+            </span>
             <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl md:text-5xl lg:text-[3.4rem] lg:leading-[1.05]">
               {heroH1}
             </h1>
