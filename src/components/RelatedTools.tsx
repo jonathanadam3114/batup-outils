@@ -120,7 +120,10 @@ export function RelatedTools({ currentPath }: RelatedToolsProps) {
   if (related.length === 0) return null;
 
   return (
-    <section className="bg-white py-16">
+    <section
+      className="relative z-10 -mt-[60px] overflow-hidden bg-white pt-32 pb-12 lg:pt-40"
+      style={{ borderTopLeftRadius: 60, borderTopRightRadius: 60 }}
+    >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
           Outils BTP complémentaires

@@ -28,10 +28,7 @@ export function SignupCTABanner({
   demoHref = `${MARKETING_BASE}/demander-une-demo`,
 }: SignupCTABannerProps) {
   return (
-    <section
-      className="relative z-10 -mt-[60px] overflow-hidden bg-white pt-32 pb-10 lg:pt-40 lg:pb-16"
-      style={{ borderTopLeftRadius: 60, borderTopRightRadius: 60 }}
-    >
+    <section className="relative z-10 overflow-hidden bg-white pt-4 pb-10 lg:pb-16">
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Carte centrale dark — rectangle anthracite flottant */}
         <div
