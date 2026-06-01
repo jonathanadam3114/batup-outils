@@ -29,6 +29,8 @@ export function FAQAccordion({ title = 'Questions fréquentes', items }: FAQAcco
         backgroundColor: '#F5F6F8',
         borderTopLeftRadius: 60,
         borderTopRightRadius: 60,
+        borderBottomLeftRadius: 60,
+        borderBottomRightRadius: 60,
       }}
       id="faq"
     >
