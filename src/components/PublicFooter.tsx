@@ -33,6 +33,11 @@ const SECTIONS: FooterSection[] = [
     title: 'Logiciel BatUp',
     links: [
       {
+        href: `${MARKETING_BASE}/assistant-ia-eva`,
+        label: 'Eva, assistante IA',
+        external: true,
+      },
+      {
         href: `${MARKETING_BASE}/logiciel-devis-facture-batiment`,
         label: 'Devis & facturation',
         external: true,
@@ -44,8 +49,13 @@ const SECTIONS: FooterSection[] = [
         external: true,
       },
       {
-        href: `${MARKETING_BASE}/suivi-chantier`,
-        label: 'Suivi de chantier',
+        href: `${MARKETING_BASE}/pointage-chantier`,
+        label: 'Pointage chantier',
+        external: true,
+      },
+      {
+        href: `${MARKETING_BASE}/logiciel-sirh-btp`,
+        label: 'SIRH : congés & paie',
         external: true,
       },
       {
